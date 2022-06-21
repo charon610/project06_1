@@ -19,13 +19,13 @@ import javafx.stage.Stage;
 
 public class LoginController {
 	/*
-	Ã¼Å©¹Ú½º : adminCheckBox
-	»ç¿ëÀÚ ¾ÆÀÌµğ : useridTextField
-	»ç¿ëÀÚ ¾ÏÈ£ : passwordPasswordField
-	·Î±×ÀÎ ¹öÆ° : loginButton
-	È¸¿ø°¡ÀÔ ¹öÆ° : registrationButton
-	Ãë¼Ò ¹öÆ° : cancelButton
-	Ã¢´İ±â ¹öÆ° : closeButton
+	ì²´í¬ë°•ìŠ¤ : adminCheckBox
+	ì‚¬ìš©ì ì•„ì´ë”” : useridTextField
+	ì‚¬ìš©ì ì•”í˜¸ : passwordPasswordField
+	ë¡œê·¸ì¸ ë²„íŠ¼ : loginButton
+	íšŒì›ê°€ì… ë²„íŠ¼ : registrationButton
+	ì·¨ì†Œ ë²„íŠ¼ : cancelButton
+	ì°½ë‹«ê¸° ë²„íŠ¼ : closeButton
 	*/
 	
 	@FXML
@@ -44,48 +44,48 @@ public class LoginController {
 	private Button closeButton;
 	@FXML
 	private Label loginMessageLabel;
-	// »ç¿ëÀÚ ·Î±×ÀÎ Ã¼Å©
+	// ì‚¬ìš©ì ë¡œê·¸ì¸ ì²´í¬
 	boolean isUserLogin = false;
 	
-	// Ã¢ ´İ±â ¹öÆ° Å¬¸¯ ÀÌº¥Æ®
+	// ì°½ ë‹«ê¸° ë²„íŠ¼ í´ë¦­ ì´ë²¤íŠ¸
 	public void closeButtonOnAction(ActionEvent e) {
-		//System.out.println("Ã¢ ´İ±â ¹öÆ° Å¬¸¯ ÀÌº¥Æ® ½ÇÇà");
+		//System.out.println("ì°½ ë‹«ê¸° ë²„íŠ¼ í´ë¦­ ì´ë²¤íŠ¸ ì‹¤í–‰");
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
 		stage.close();
 	}
 	
 	public void loginButtonOnAction(ActionEvent e) {
-		loginMessageLabel.setText("»ç¿ëÀÚ ¾ÆÀÌµğ¿Í ¾ÏÈ£¸¦ °Ë»çÇÕ´Ï´Ù...");
+		loginMessageLabel.setText("ì‚¬ìš©ì ì•„ì´ë””ì™€ ì•”í˜¸ë¥¼ ê²€ì‚¬í•©ë‹ˆë‹¤...");
 		
-		if(loginButton.getText().equals("·Î±×ÀÎ") == true) {
+		if(loginButton.getText().equals("ë¡œê·¸ì¸") == true) {
 			if(
 				useridTextField.getText().isBlank() == false
 				&& passwordPasswordField.getText().isBlank() == false
-					) { // ¾ÆÀÌµğ¿Í ¾ÏÈ£°¡ ÀÔ·ÂµÇ¾î ÀÖ´ÂÁö Ã¼Å©
-				if(adminCheckBox.isSelected() == true) { // °ü¸®ÀÚ ·Î±×ÀÎ
-					loginMessageLabel.setText("°ü¸®ÀÚ ·Î±×ÀÎ...");
+					) { // ì•„ì´ë””ì™€ ì•”í˜¸ê°€ ì…ë ¥ë˜ì–´ ìˆëŠ”ì§€ ì²´í¬
+				if(adminCheckBox.isSelected() == true) { // ê´€ë¦¬ì ë¡œê·¸ì¸
+					loginMessageLabel.setText("ê´€ë¦¬ì ë¡œê·¸ì¸...");
 					validateAdminLogin();
-				} else { // ÀÏ¹İ »ç¿ëÀÚ ·Î±×ÀÎ
-					loginMessageLabel.setText("»ç¿ëÀÚ ·Î±×ÀÎ...");
+				} else { // ì¼ë°˜ ì‚¬ìš©ì ë¡œê·¸ì¸
+					loginMessageLabel.setText("ì‚¬ìš©ì ë¡œê·¸ì¸...");
 					validateMemberLogin();
 				}
-			} else { // ¾ÆÀÌµğ¿Í ¾ÏÈ£°¡ ¾øÀ½
-				loginMessageLabel.setText("¾ÆÀÌµğ¿Í ¾ÏÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+			} else { // ì•„ì´ë””ì™€ ì•”í˜¸ê°€ ì—†ìŒ
+				loginMessageLabel.setText("ì•„ì´ë””ì™€ ì•”í˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
 			}
-		} else if(loginButton.getText().equals("·Î±×¾Æ¿ô") == true) {
-			loginMessageLabel.setText("·Î±×¾Æ¿ô...");
+		} else if(loginButton.getText().equals("ë¡œê·¸ì•„ì›ƒ") == true) {
+			loginMessageLabel.setText("ë¡œê·¸ì•„ì›ƒ...");
 			logout();
 		}
 	}
 	
 	public void adminCheckBoxOnAction(ActionEvent e) {
-		if(adminCheckBox.isSelected() == true) {  // °ü¸®ÀÚ Ã¼Å© On
-			registrationButton.setText("°ü¸®ÀÚ È¸¿ø°ü¸®");
+		if(adminCheckBox.isSelected() == true) {  // ê´€ë¦¬ì ì²´í¬ On
+			registrationButton.setText("ê´€ë¦¬ì íšŒì›ê´€ë¦¬");
 			registrationButton.setDisable(true);
 			useridTextField.setText("");
 			passwordPasswordField.setText("");
-		} else { // °ü¸®ÀÚ Ã¼Å© Off (ÀÏ¹İ »ç¿ëÀÚ)
-			registrationButton.setText("È¸¿ø°¡ÀÔ");
+		} else { // ê´€ë¦¬ì ì²´í¬ Off (ì¼ë°˜ ì‚¬ìš©ì)
+			registrationButton.setText("íšŒì›ê°€ì…");
 			registrationButton.setDisable(false);
 			useridTextField.setText("");
 			passwordPasswordField.setText("");
@@ -94,25 +94,25 @@ public class LoginController {
 	
 	public void registrationButtonOnAction(ActionEvent e) {
 		try {
-			if(adminCheckBox.isSelected() == true) { // °ü¸®ÀÚ ·Î±×ÀÎ ºÎºĞ
+			if(adminCheckBox.isSelected() == true) { // ê´€ë¦¬ì ë¡œê·¸ì¸ ë¶€ë¶„
 				Parent root1 = FXMLLoader.load(getClass().getResource("membership.fxml"));
 				Stage membershipStage = new Stage();
-				membershipStage.setTitle("°ü¸®ÀÚ È¸¿ø°ü¸® ¸ğµâ");
+				membershipStage.setTitle("ê´€ë¦¬ì íšŒì›ê´€ë¦¬ ëª¨ë“ˆ");
 				membershipStage.setScene(new Scene(root1, 600, 400));
 				membershipStage.getIcons().add(new Image("application/instagram"));
 				membershipStage.show();
-			} else { // »ç¿ëÀÚ ·Î±×ÀÎ ºÎºĞ
-				if(isUserLogin == true) { // È¸¿øÁ¤º¸ ¼öÁ¤ ¸ğµâ (»ç¿ëÀÚ ·Î±×ÀÎ ¼º°ø)
+			} else { // ì‚¬ìš©ì ë¡œê·¸ì¸ ë¶€ë¶„
+				if(isUserLogin == true) { // íšŒì›ì •ë³´ ìˆ˜ì • ëª¨ë“ˆ (ì‚¬ìš©ì ë¡œê·¸ì¸ ì„±ê³µ)
 					Parent root2 = FXMLLoader.load(getClass().getResource("modification.fxml"));
 					Stage modificationStage = new Stage();
-					modificationStage.setTitle("»ç¿ëÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ ¸ğµâ");
+					modificationStage.setTitle("ì‚¬ìš©ì íšŒì›ì •ë³´ ìˆ˜ì • ëª¨ë“ˆ");
 					modificationStage.setScene(new Scene(root2, 600, 400));
 					modificationStage.getIcons().add(new Image("application/instagram"));
 					modificationStage.show();
-				} else { // È¸¿ø°¡ÀÔ ¸ğµâ(»ç¿ëÀÚ ·Î±×ÀÎ ¾ÈµÈ »óÈ²)
+				} else { // íšŒì›ê°€ì… ëª¨ë“ˆ(ì‚¬ìš©ì ë¡œê·¸ì¸ ì•ˆëœ ìƒí™©)
 					Parent root3 = FXMLLoader.load(getClass().getResource("registration.fxml"));
 					Stage registrationStage = new Stage();
-					registrationStage.setTitle("»ç¿ëÀÚ È¸¿ø°¡ÀÔ ¸ğµâ");
+					registrationStage.setTitle("ì‚¬ìš©ì íšŒì›ê°€ì… ëª¨ë“ˆ");
 					registrationStage.setScene(new Scene(root3, 600, 400));
 					registrationStage.getIcons().add(new Image("application/instagram"));
 					registrationStage.show();
@@ -132,12 +132,12 @@ public class LoginController {
 		DBConnection connDB = new DBConnection();
 		Connection conn = connDB.getConnection();
 		
-		// °ü¸®ÀÚ ·Î±×ÀÎ Ã¼Å©
+		// ê´€ë¦¬ì ë¡œê·¸ì¸ ì²´í¬
 		String sql = "SELECT admin_id, admin_password"
 				+ " FROM admin_accounts"
 				+ " WHERE admin_id=?"
 				+ " AND admin_password=?";
-		// ·Î±×ÀÎ ¼º°ø ¿©ºÎ
+		// ë¡œê·¸ì¸ ì„±ê³µ ì—¬ë¶€
 		boolean result = false;
 		
 		try {
@@ -147,13 +147,13 @@ public class LoginController {
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
 			
-			// °Ë»ç
-			// SELECT ¹®¿¡¼­ °ü¸®ÀÚ ¾ÆÀÌµğ¿Í ¾ÏÈ£·Î µğºñ ROW¸¦ Ã£¾Ò´Â°¡?
+			// ê²€ì‚¬
+			// SELECT ë¬¸ì—ì„œ ê´€ë¦¬ì ì•„ì´ë””ì™€ ì•”í˜¸ë¡œ ë””ë¹„ ROWë¥¼ ì°¾ì•˜ëŠ”ê°€?
 			if(rs.next()) {
 				result = true;
 			}
 			
-			// ¼Ò¸êÀÚ
+			// ì†Œë©¸ì
 			pstmt.close();
 			rs.close();
 			conn.close();
@@ -167,12 +167,12 @@ public class LoginController {
 		DBConnection connDB = new DBConnection();
 		Connection conn = connDB.getConnection();
 		
-		// °ü¸®ÀÚ ·Î±×ÀÎ Ã¼Å©
+		// ê´€ë¦¬ì ë¡œê·¸ì¸ ì²´í¬
 		String sql = "SELECT user_id, user_password"
 				+ " FROM member_accounts"
 				+ " WHERE user_id=?"
 				+ " AND user_password=?";
-		// ·Î±×ÀÎ ¼º°ø ¿©ºÎ
+		// ë¡œê·¸ì¸ ì„±ê³µ ì—¬ë¶€
 		boolean result = false;
 		
 		try {
@@ -182,15 +182,15 @@ public class LoginController {
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
 			
-			// °Ë»ç
-			// SELECT ¹®¿¡¼­ °ü¸®ÀÚ ¾ÆÀÌµğ¿Í ¾ÏÈ£·Î µğºñ ROW¸¦ Ã£¾Ò´Â°¡?
+			// ê²€ì‚¬
+			// SELECT ë¬¸ì—ì„œ ê´€ë¦¬ì ì•„ì´ë””ì™€ ì•”í˜¸ë¡œ ë””ë¹„ ROWë¥¼ ì°¾ì•˜ëŠ”ê°€?
 			if(rs.next()) {
 				result = true;
 				isUserLogin = true;
 				Main.global_user_id = useridTextField.getText();
 			}
 			
-			// ¼Ò¸êÀÚ
+			// ì†Œë©¸ì
 			pstmt.close();
 			rs.close();
 			conn.close();
@@ -201,32 +201,32 @@ public class LoginController {
 	}
 	
 	void validateAdminLogin() {
-		if(isAdminLogin() == true) { // °ü¸®ÀÚ ·Î±×ÀÎ ¼º°ø
-			loginMessageLabel.setText("°ü¸®ÀÚ ·Î±×ÀÎ ¼º°ø!! È¯¿µÇÕ´Ï´Ù^^");
+		if(isAdminLogin() == true) { // ê´€ë¦¬ì ë¡œê·¸ì¸ ì„±ê³µ
+			loginMessageLabel.setText("ê´€ë¦¬ì ë¡œê·¸ì¸ ì„±ê³µ!! í™˜ì˜í•©ë‹ˆë‹¤^^");
 			useridTextField.setText("");
 			passwordPasswordField.setText("");
 			registrationButton.setDisable(false);
-			loginButton.setText("·Î±×¾Æ¿ô");
-		} else { // °ü¸®ÀÚ ·Î±×ÀÎ ½ÇÆĞ
-			loginMessageLabel.setText("°ü¸®ÀÚ ¾ÆÀÌµğ ¶Ç´Â ¾ÏÈ£°¡ Àß¸øµÆ½À´Ï´Ù!");
+			loginButton.setText("ë¡œê·¸ì•„ì›ƒ");
+		} else { // ê´€ë¦¬ì ë¡œê·¸ì¸ ì‹¤íŒ¨
+			loginMessageLabel.setText("ê´€ë¦¬ì ì•„ì´ë”” ë˜ëŠ” ì•”í˜¸ê°€ ì˜ëª»ëìŠµë‹ˆë‹¤!");
 		}
 	}
 	
 	void validateMemberLogin() {
-		if(isMemberLogin() == true) { // »ç¿ëÀÚ ·Î±×ÀÎ ¼º°ø
-			loginMessageLabel.setText("»ç¿ëÀÚ ·Î±×ÀÎ ¼º°ø!! È¯¿µÇÕ´Ï´Ù^^");
+		if(isMemberLogin() == true) { // ì‚¬ìš©ì ë¡œê·¸ì¸ ì„±ê³µ
+			loginMessageLabel.setText("ì‚¬ìš©ì ë¡œê·¸ì¸ ì„±ê³µ!! í™˜ì˜í•©ë‹ˆë‹¤^^");
 			useridTextField.setText("");
 			passwordPasswordField.setText("");
-			loginButton.setText("·Î±×¾Æ¿ô");
-			registrationButton.setText("È¸¿øÁ¤º¸ ¼öÁ¤");
-		} else { // »ç¿ëÀÚ ·Î±×ÀÎ ½ÇÆĞ
-			loginMessageLabel.setText("»ç¿ëÀÚ ¾ÆÀÌµğ ¶Ç´Â ¾ÏÈ£°¡ Àß¸øµÆ½À´Ï´Ù!");
+			loginButton.setText("ë¡œê·¸ì•„ì›ƒ");
+			registrationButton.setText("íšŒì›ì •ë³´ ìˆ˜ì •");
+		} else { // ì‚¬ìš©ì ë¡œê·¸ì¸ ì‹¤íŒ¨
+			loginMessageLabel.setText("ì‚¬ìš©ì ì•„ì´ë”” ë˜ëŠ” ì•”í˜¸ê°€ ì˜ëª»ëìŠµë‹ˆë‹¤!");
 		}
 	}
 	
 	void logout() {
-		loginButton.setText("·Î±×ÀÎ");
-		registrationButton.setText("È¸¿ø°¡ÀÔ");
+		loginButton.setText("ë¡œê·¸ì¸");
+		registrationButton.setText("íšŒì›ê°€ì…");
 		adminCheckBox.setSelected(false);
 		isUserLogin = false;
 		Main.global_user_id = null;

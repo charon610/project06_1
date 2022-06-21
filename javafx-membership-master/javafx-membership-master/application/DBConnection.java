@@ -9,17 +9,17 @@ public class DBConnection {
 	public Connection getConnection() {
 		String dbDriver = "oracle.jdbc.driver.OracleDriver";
 		String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String dbUser = "SUNGIL";
-		String dbPassword = "sungil";
+		String dbUser = "dbtest";
+		String dbPassword = "1234";
 		
 		try {
 			Class.forName(dbDriver);
 			dbConn = DriverManager.getConnection(
 					dbUrl, dbUser, dbPassword
 			);
-			//System.out.println("µðºñ ¿¬°á ¿Ï·á~!");
+			//System.out.println("ë””ë¹„ ì—°ê²° ì™„ë£Œ~!");
 		} catch(Exception e) {
-			//System.out.println("µðºñ ¿¬°á ½ÇÆÐ..");
+			//System.out.println("ë””ë¹„ ì—°ê²° ì‹¤íŒ¨..");
 			e.printStackTrace();
 		}
 		

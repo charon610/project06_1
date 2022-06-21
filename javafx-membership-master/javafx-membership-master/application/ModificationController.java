@@ -50,7 +50,7 @@ public class ModificationController implements Initializable {
 	
 	@FXML
 	void modifyButtonOnAction() {
-		// ÀÔ·ÂÇÑ °ªÀ» Ã¼Å©ÇÕ´Ï´Ù
+		// ì…ë ¥í•œ ê°’ì„ ì²´í¬í•©ë‹ˆë‹¤
 		boolean checkEmpty = isCheckEmpty();
 		boolean checkPasswordSame = isCheckPasswordSame();
 		boolean checkNumbers = isCheckNumbers();
@@ -59,15 +59,15 @@ public class ModificationController implements Initializable {
 				checkEmpty == true
 				&& checkPasswordSame == true
 				&& checkNumbers == true
-				) { // ¸ğµç Ã¼Å©¸¦ Åë°úÇßÀ» °æ¿ì µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÑ´Ù
+				) { // ëª¨ë“  ì²´í¬ë¥¼ í†µê³¼í–ˆì„ ê²½ìš° ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥í•œë‹¤
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("È¸¿øÁ¤º¸ ¼öÁ¤ ¸ğµâ");
-			alert.setHeaderText("È¸¿øÁ¤º¸ ¼öÁ¤");
-			alert.setContentText(useridTextField.getText() + " ´ÔÀÇ È¸¿øÁ¤º¸¸¦ ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?");
+			alert.setTitle("íšŒì›ì •ë³´ ìˆ˜ì • ëª¨ë“ˆ");
+			alert.setHeaderText("íšŒì›ì •ë³´ ìˆ˜ì •");
+			alert.setContentText(useridTextField.getText() + " ë‹˜ì˜ íšŒì›ì •ë³´ë¥¼ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 			Optional<ButtonType> alertResult = alert.showAndWait();
 			
 			if(alertResult.get() == ButtonType.OK) {
-				modifyMessageLabel.setText("È¸¿ø Á¤º¸¸¦ ¼öÁ¤ÇÕ´Ï´Ù...");
+				modifyMessageLabel.setText("íšŒì› ì •ë³´ë¥¼ ìˆ˜ì •í•©ë‹ˆë‹¤...");
 				
 				DBConnection connNow = new DBConnection();
 				Connection conn = connNow.getConnection();
@@ -94,18 +94,18 @@ public class ModificationController implements Initializable {
 					pstmt.close();
 					conn.close();
 					
-					modifyMessageLabel.setText("È¸¿ø Á¤º¸ ¼öÁ¤À» ¿Ï·áÇß½À´Ï´Ù!");
+					modifyMessageLabel.setText("íšŒì› ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤!");
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
 			}
 		} else {
 			if(checkEmpty == false) {
-				modifyMessageLabel.setText("¸ğµç Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+				modifyMessageLabel.setText("ëª¨ë“  ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
 			} else if(checkPasswordSame == false) {
-				modifyMessageLabel.setText("ÀÔ·ÂÇÑ ¾ÏÈ£°¡ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä!");
+				modifyMessageLabel.setText("ì…ë ¥í•œ ì•”í˜¸ê°€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”!");
 			} else if(checkNumbers == false) {
-				modifyMessageLabel.setText("ÇĞ³â, ¹İ, ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù!");
+				modifyMessageLabel.setText("í•™ë…„, ë°˜, ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤!");
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class ModificationController implements Initializable {
 		stage.close();
 	}
 	
-	boolean isCheckEmpty() { // °ø¹éÀÌ ¾ø´ÂÁö Ã¼Å©ÇÑ´Ù
+	boolean isCheckEmpty() { // ê³µë°±ì´ ì—†ëŠ”ì§€ ì²´í¬í•œë‹¤
 		boolean result = false;
 		if(
 			usernameTextField.getText().isBlank() == false
@@ -131,7 +131,7 @@ public class ModificationController implements Initializable {
 			&& hakTextField.getText().isBlank() == false
 			&& banTextField.getText().isBlank() == false
 			&& bunTextField.getText().isBlank() == false
-		) { // °ø¹éÀÌ ¾ø´Ù¸é..
+		) { // ê³µë°±ì´ ì—†ë‹¤ë©´..
 			result = true;
 		}
 		return result;
@@ -165,7 +165,7 @@ public class ModificationController implements Initializable {
 				(hak >= 1 && hak <= 3)
 				&& (ban >= 1 && ban <= 15)
 				&& (bun >= 1 && bun <= 31)
-			) { // ÇĞ³â, ¹İ, ¹øÈ£ÀÇ ¼ıÀÚ¸¦ °Ë»çÇØ¼­ Åë°úÇÑ °æ¿ì
+			) { // í•™ë…„, ë°˜, ë²ˆí˜¸ì˜ ìˆ«ìë¥¼ ê²€ì‚¬í•´ì„œ í†µê³¼í•œ ê²½ìš°
 				result = true;
 			}
 			

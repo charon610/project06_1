@@ -69,7 +69,7 @@ public class MembershipController implements Initializable {
 
 	@FXML
 	void updateButtonOnAction() {
-		// ÀÔ·ÂÇÑ °ªÀ» Ã¼Å©ÇÕ´Ï´Ù
+		// ì…ë ¥í•œ ê°’ì„ ì²´í¬í•©ë‹ˆë‹¤
 				boolean checkEmpty = isCheckEmpty();
 				boolean checkPasswordSame = isCheckPasswordSame();
 				boolean checkNumbers = isCheckNumbers();
@@ -78,15 +78,15 @@ public class MembershipController implements Initializable {
 						checkEmpty == true
 						&& checkPasswordSame == true
 						&& checkNumbers == true
-						) { // ¸ğµç Ã¼Å©¸¦ Åë°úÇßÀ» °æ¿ì µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÑ´Ù
+						) { // ëª¨ë“  ì²´í¬ë¥¼ í†µê³¼í–ˆì„ ê²½ìš° ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥í•œë‹¤
 					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setTitle("°ü¸®ÀÚ ¸ğµâ : È¸¿øÁ¤º¸ ¼öÁ¤");
-					alert.setHeaderText("È¸¿øÁ¤º¸ ¼öÁ¤");
-					alert.setContentText(useridTextField.getText() + " ´ÔÀÇ È¸¿øÁ¤º¸¸¦ ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?");
+					alert.setTitle("ê´€ë¦¬ì ëª¨ë“ˆ : íšŒì›ì •ë³´ ìˆ˜ì •");
+					alert.setHeaderText("íšŒì›ì •ë³´ ìˆ˜ì •");
+					alert.setContentText(useridTextField.getText() + " ë‹˜ì˜ íšŒì›ì •ë³´ë¥¼ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 					Optional<ButtonType> alertResult = alert.showAndWait();
 					
 					if(alertResult.get() == ButtonType.OK) {
-						membershipMessageLabel.setText("È¸¿ø Á¤º¸¸¦ ¼öÁ¤ÇÕ´Ï´Ù...");
+						membershipMessageLabel.setText("íšŒì› ì •ë³´ë¥¼ ìˆ˜ì •í•©ë‹ˆë‹¤...");
 						
 						DBConnection connNow = new DBConnection();
 						Connection conn = connNow.getConnection();
@@ -113,7 +113,7 @@ public class MembershipController implements Initializable {
 							pstmt.close();
 							conn.close();
 							
-							membershipMessageLabel.setText("È¸¿ø Á¤º¸ ¼öÁ¤À» ¿Ï·áÇß½À´Ï´Ù!");
+							membershipMessageLabel.setText("íšŒì› ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤!");
 							
 							readlistButtonOnAction();
 						} catch(Exception e) {
@@ -122,11 +122,11 @@ public class MembershipController implements Initializable {
 					}
 				} else {
 					if(checkEmpty == false) {
-						membershipMessageLabel.setText("¸ğµç Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+						membershipMessageLabel.setText("ëª¨ë“  ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
 					} else if(checkPasswordSame == false) {
-						membershipMessageLabel.setText("ÀÔ·ÂÇÑ ¾ÏÈ£°¡ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä!");
+						membershipMessageLabel.setText("ì…ë ¥í•œ ì•”í˜¸ê°€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”!");
 					} else if(checkNumbers == false) {
-						membershipMessageLabel.setText("ÇĞ³â, ¹İ, ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù!");
+						membershipMessageLabel.setText("í•™ë…„, ë°˜, ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤!");
 					}
 				}
 	}
@@ -135,9 +135,9 @@ public class MembershipController implements Initializable {
 	void deleteButtonOnAction() {
 		if(isCheckEmpty()  == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("°ü¸®ÀÚ ¸ğµâ : È¸¿øÁ¤º¸ »èÁ¦");
-			alert.setHeaderText("È¸¿øÁ¤º¸ »èÁ¦");
-			alert.setContentText(useridTextField.getText() + " ´ÔÀÇ È¸¿øÁ¤º¸¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+			alert.setTitle("ê´€ë¦¬ì ëª¨ë“ˆ : íšŒì›ì •ë³´ ì‚­ì œ");
+			alert.setHeaderText("íšŒì›ì •ë³´ ì‚­ì œ");
+			alert.setContentText(useridTextField.getText() + " ë‹˜ì˜ íšŒì›ì •ë³´ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 			Optional<ButtonType> alertResult = alert.showAndWait();
 			if(alertResult.get() == ButtonType.OK) {
 				DBConnection connNow = new DBConnection();
@@ -154,7 +154,7 @@ public class MembershipController implements Initializable {
 					pstmt.close();
 					conn.close();
 					
-					membershipMessageLabel.setText("È¸¿ø Á¤º¸ ¼öÁ¤À» ¿Ï·áÇß½À´Ï´Ù!");
+					membershipMessageLabel.setText("íšŒì› ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤!");
 					
 					userIdTableColumn.setText("");
 					userPasswordTableColumn.setText("");
@@ -181,7 +181,7 @@ public class MembershipController implements Initializable {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			ObservableList<Member> dataList = FXCollections.observableArrayList(); // ÀÚ¹Ù Á¦³×¸¯(Generic)
+			ObservableList<Member> dataList = FXCollections.observableArrayList(); // ìë°” ì œë„¤ë¦­(Generic)
 			
 			while(rs.next()) {
 				dataList.add(
@@ -221,7 +221,7 @@ public class MembershipController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//System.out.println("¸â¹ö½± ¸ğµâ Ã¢ÀÌ ¿­·Á¼­ ÃÊ±âÈ­ ÇÔ¼ö(initialize)¸¦ ½ÇÇàÇß½À´Ï´Ù.");
+		//System.out.println("ë©¤ë²„ì‰½ ëª¨ë“ˆ ì°½ì´ ì—´ë ¤ì„œ ì´ˆê¸°í™” í•¨ìˆ˜(initialize)ë¥¼ ì‹¤í–‰í–ˆìŠµë‹ˆë‹¤.");
 		userNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
 		userIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		userPasswordTableColumn.setCellValueFactory(new PropertyValueFactory<>("userPassword"));
@@ -232,7 +232,7 @@ public class MembershipController implements Initializable {
 		readlistButtonOnAction();
 	}
 	
-	boolean isCheckEmpty() { // °ø¹éÀÌ ¾ø´ÂÁö Ã¼Å©ÇÑ´Ù
+	boolean isCheckEmpty() { // ê³µë°±ì´ ì—†ëŠ”ì§€ ì²´í¬í•œë‹¤
 		boolean result = false;
 		if(
 			usernameTextField.getText().isBlank() == false
@@ -242,7 +242,7 @@ public class MembershipController implements Initializable {
 			&& hakTextField.getText().isBlank() == false
 			&& banTextField.getText().isBlank() == false
 			&& bunTextField.getText().isBlank() == false
-		) { // °ø¹éÀÌ ¾ø´Ù¸é..
+		) { // ê³µë°±ì´ ì—†ë‹¤ë©´..
 			result = true;
 		}
 		return result;
@@ -276,7 +276,7 @@ public class MembershipController implements Initializable {
 				(hak >= 1 && hak <= 3)
 				&& (ban >= 1 && ban <= 15)
 				&& (bun >= 1 && bun <= 31)
-			) { // ÇĞ³â, ¹İ, ¹øÈ£ÀÇ ¼ıÀÚ¸¦ °Ë»çÇØ¼­ Åë°úÇÑ °æ¿ì
+			) { // í•™ë…„, ë°˜, ë²ˆí˜¸ì˜ ìˆ«ìë¥¼ ê²€ì‚¬í•´ì„œ í†µê³¼í•œ ê²½ìš°
 				result = true;
 			}
 			

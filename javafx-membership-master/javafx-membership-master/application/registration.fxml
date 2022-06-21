@@ -28,9 +28,9 @@
             <Label layoutX="82.0" layoutY="90.0" text="아이디" />
             <Label layoutX="82.0" layoutY="122.0" text="암호" />
             <Label layoutX="66.0" layoutY="153.0" text="암호 확인" />
-            <Label layoutX="106.0" layoutY="201.0" text="학년" />
-            <Label layoutX="254.0" layoutY="201.0" text="반" />
-            <Label layoutX="430.0" layoutY="201.0" text="번호" />
+            <Label layoutX="106.0" layoutY="201.0" text="강의실" />
+            <Label layoutX="254.0" layoutY="201.0" text="주거지역" />
+            <Label layoutX="430.0" layoutY="201.0" text="자격증여부" />
             <TextField fx:id="usernameTextField" layoutX="150.0" layoutY="51.0" prefHeight="26.0" prefWidth="389.0" promptText="이름을 입력해주세요" />
             <TextField fx:id="useridTextField" layoutX="150.0" layoutY="85.0" prefHeight="26.0" prefWidth="389.0" promptText="아이디를 입력해주세요" />
             <PasswordField fx:id="password1PasswordField" layoutX="150.0" layoutY="118.0" prefHeight="26.0" prefWidth="390.0" promptText="암호를 입력해주세요" />

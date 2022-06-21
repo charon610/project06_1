@@ -8,13 +8,13 @@ import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
-	// ¸ğµç ¸ğµâ¿¡¼­ °øÀ¯ÇÏ´Â Àü¿ª º¯¼ö(»ç¿ëÀÚ ¾ÆÀÌµğ)
+	// ëª¨ë“  ëª¨ë“ˆì—ì„œ ê³µìœ í•˜ëŠ” ì „ì—­ ë³€ìˆ˜(ì‚¬ìš©ì ì•„ì´ë””)
 	public static String global_user_id = null;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-		primaryStage.setTitle("·Î±×ÀÎ ¸ğµâ");
+		primaryStage.setTitle("ë¡œê·¸ì¸ ëª¨ë“ˆ");
 		primaryStage.getIcons().add(new Image("application/instagram.png"));
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.show();

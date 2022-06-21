@@ -12,7 +12,7 @@ CREATE SEQUENCE admin_idx_seq START WITH 1;
 INSERT INTO admin_accounts
 (idx, admin_id, admin_password)
 VALUES
-(admin_idx_seq.NEXTVAL, 'admin', 'sungil');
+(admin_idx_seq.NEXTVAL, 'admin', 'admin1');
 
 
 
@@ -20,11 +20,11 @@ CREATE TABLE member_accounts
 (
     idx             NUMBER(4)       NOT NULL,
     user_name       VARCHAR2(50)    NOT NULL,
-    user_id         VARCHAR2(50)    NOT NULL,
-    user_password   VARCHAR2(50)    NOT NULL,
-    user_hak        NUMBER(4)       NOT NULL,
-    user_ban        NUMBER(4)       NOT NULL,
-    user_bun        NUMBER(4)       NOT NULL
+    user_gender     VARCHAR2(50)    NOT NULL,
+    class_name      VARCHAR2(50)    NOT NULL,
+    class_num       NUMBER(3)       NOT NULL,
+    city            VARCHAR2(50)    NOT NULL,
+    jungbo          VARCHAR2(50)    NOT NULL
 );
 ALTER TABLE member_accounts ADD
 (
@@ -33,9 +33,9 @@ ALTER TABLE member_accounts ADD
 CREATE SEQUENCE member_idx_seq START WITH 1;
 
 INSERT INTO member_accounts
-(idx, user_name, user_id, user_password, user_hak, user_ban, user_bun)
+(idx, user_name, user_gender, class_name, class_num, city, jungbo)
 VALUES
-(member_idx_seq.NEXTVAL, '�׽�Ʈ1', 'test1', '12345', 2, 10, 22);
+(member_idx_seq.NEXTVAL, '송별회', '남', '자바프로그래밍', '505', '안산시', 'O');
 
 
 

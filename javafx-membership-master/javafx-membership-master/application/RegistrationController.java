@@ -1,168 +1,147 @@
 package application;
 
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-public class RegistrationController {
+public class ModificationController implements Initializable {
 	@FXML
 	private TextField usernameTextField;
 	@FXML
 	private TextField useridTextField;
 	@FXML
-	private TextField hakTextField;
-	@FXML
-	private TextField banTextField;
-	@FXML
-	private TextField bunTextField;
-	@FXML
 	private PasswordField password1PasswordField;
 	@FXML
 	private PasswordField password2PasswordField;
 	@FXML
-	private Label registerMessageLabel;
+	private TextField classnumTextField;
 	@FXML
-	private Button submitButton;
+	private TextField cityTextField;
 	@FXML
-	private Button cancelButton;
+	private TextField bunTextField;
+	@FXML
+	private Label modifyMessageLabel;
+	@FXML
+	private Button modifyButton;
+	@FXML
+	private Button resetButton;
 	@FXML
 	private Button closeButton;
 	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		readMemberData();	
+	}	
+	
 	@FXML
-	void submitButtonOnAction() {
-		// ÀÔ·ÂÇÑ °ªÀ» Ã¼Å©ÇÕ´Ï´Ù
+	void modifyButtonOnAction() {
+		// ì…ë ¥í•œ ê°’ì„ ì²´í¬í•©ë‹ˆë‹¤
 		boolean checkEmpty = isCheckEmpty();
-		boolean checkDuplicatedId = isCheckDuplicatedId();
 		boolean checkPasswordSame = isCheckPasswordSame();
 		boolean checkNumbers = isCheckNumbers();
 		
 		if(
 				checkEmpty == true
-				&& checkDuplicatedId == true
 				&& checkPasswordSame == true
 				&& checkNumbers == true
-				) { // ¸ğµç Ã¼Å©¸¦ Åë°úÇßÀ» °æ¿ì µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÑ´Ù
-			registerMessageLabel.setText("È¸¿ø Á¤º¸¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÕ´Ï´Ù...");
+				) { // ëª¨ë“  ì²´í¬ë¥¼ í†µê³¼í–ˆì„ ê²½ìš° ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥í•œë‹¤
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("íšŒì›ì •ë³´ ìˆ˜ì • ëª¨ë“ˆ");
+			alert.setHeaderText("íšŒì›ì •ë³´ ìˆ˜ì •");
+			alert.setContentText(useridTextField.getText() + " ë‹˜ì˜ íšŒì›ì •ë³´ë¥¼ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
+			Optional<ButtonType> alertResult = alert.showAndWait();
 			
-			DBConnection connNow = new DBConnection();
-			Connection conn = connNow.getConnection();
-			
-			String sql = "INSERT INTO member_accounts "
-					+ "(idx, user_name, user_id, user_password, user_hak, user_ban, user_bun) "
-					+ "VALUES "
-					+ "(member_idx_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)";
-			
-			try {
-				// µ¥ÀÌÅÍº£ÀÌ½º¿¡ °ªÀ» ÀúÀåÇÏ´Â SQL¹® ½ÇÇà
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, usernameTextField.getText());
-				pstmt.setString(2, useridTextField.getText());
-				pstmt.setString(3, password1PasswordField.getText());
-				pstmt.setString(4, hakTextField.getText());
-				pstmt.setString(5, banTextField.getText());
-				pstmt.setString(6, bunTextField.getText());
-				pstmt.executeUpdate();
+			if(alertResult.get() == ButtonType.OK) {
+				modifyMessageLabel.setText("íšŒì› ì •ë³´ë¥¼ ìˆ˜ì •í•©ë‹ˆë‹¤...");
 				
-				pstmt.close();
-				conn.close();
+				DBConnection connNow = new DBConnection();
+				Connection conn = connNow.getConnection();
 				
-				registerMessageLabel.setText("µ¥ÀÌÅÍº£ÀÌ½º¿¡ È¸¿øÁ¤º¸ ÀÔ·Â ¿Ï·á!");
-				usernameTextField.setText("");
-				useridTextField.setText("");
-				password1PasswordField.setText("");
-				password2PasswordField.setText("");
-				hakTextField.setText("");
-				banTextField.setText("");
-				bunTextField.setText("");
-			}catch(Exception e) {
-				e.printStackTrace();
+				String sql = "UPDATE member_accounts "
+						+ "SET "
+						+ "user_name=?, "
+						+ "class_name=?, "
+						+ "class_num=?, "
+						+ "city=?, "
+						+ "jungbo=? "
+						+ "WHERE user_id=?";
+				
+				try {
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, usernameTextField.getText());
+					pstmt.setString(2, password1PasswordField.getText());
+					pstmt.setString(3, classnumTextField.getText());
+					pstmt.setString(4, cityTextField.getText());
+					pstmt.setString(5, bunTextField.getText());
+					pstmt.setString(6, useridTextField.getText());
+					pstmt.executeUpdate();
+					
+					pstmt.close();
+					conn.close();
+					
+					modifyMessageLabel.setText("íšŒì› ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤!");
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} else {
 			if(checkEmpty == false) {
-				registerMessageLabel.setText("¸ğµç Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
-			} else if(checkDuplicatedId == false) {
-				registerMessageLabel.setText("¾ÆÀÌµğ°¡ Áßº¹µË´Ï´Ù. ´Ù¸¥ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+				modifyMessageLabel.setText("ëª¨ë“  ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
 			} else if(checkPasswordSame == false) {
-				registerMessageLabel.setText("ÀÔ·ÂÇÑ ¾ÏÈ£°¡ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä!");
+				modifyMessageLabel.setText("ì…ë ¥í•œ ì•”í˜¸ê°€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”!");
 			} else if(checkNumbers == false) {
-				registerMessageLabel.setText("ÇĞ³â, ¹İ, ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù!");
+				modifyMessageLabel.setText("í•™ë…„, ë°˜, ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤!");
 			}
 		}
 	}
 	
 	@FXML
-	void cancelButtonOnAction(ActionEvent e) {
-		usernameTextField.setText("");
-		useridTextField.setText("");
-		hakTextField.setText("");
-		banTextField.setText("");
-		bunTextField.setText("");
-		password1PasswordField.setText("");
-		password2PasswordField.setText("");
+	void resetButtonOnAction() {
+		readMemberData();
 	}
 	
 	@FXML
-	void closeButtonOnAction(ActionEvent e) {
+	void closeButtonOnAction() {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
 	
-	boolean isCheckEmpty() { // °ø¹éÀÌ ¾ø´ÂÁö Ã¼Å©ÇÑ´Ù
+	boolean isCheckEmpty() { // ê³µë°±ì´ ì—†ëŠ”ì§€ ì²´í¬í•œë‹¤
 		boolean result = false;
 		if(
 			usernameTextField.getText().isBlank() == false
 			&& useridTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& hakTextField.getText().isBlank() == false
-			&& banTextField.getText().isBlank() == false
+			&& classnumTextField.getText().isBlank() == false
+			&& cityTextField.getText().isBlank() == false
 			&& bunTextField.getText().isBlank() == false
-		) { // °ø¹éÀÌ ¾ø´Ù¸é..
+		) { // ê³µë°±ì´ ì—†ë‹¤ë©´..
 			result = true;
 		}
 		return result;
 	}
-	
-	boolean isCheckDuplicatedId() { // µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ¾ÆÀÌµğ Áßº¹À» Ã¼Å©ÇÑ´Ù
-		boolean result = true;
-		DBConnection connNow = new DBConnection();
-		Connection conn = connNow.getConnection();
 		
-		String sql = "SELECT COUNT(1) FROM member_accounts "
-				+ " WHERE user_id='" + useridTextField.getText() + "'";
-		
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				if(rs.getInt(1) == 1) {
-					result = false;
-				}
-			}
-			
-			stmt.close();
-			conn.close();
-		} catch(Exception e) {
-		}
-		
-		return result;
-	}
-	
 	boolean isCheckPasswordSame() {
 		boolean result = false;
 		if(
 			(password1PasswordField.getText().isBlank() == false
-			  && password2PasswordField.getText().isBlank() == false)
+			    && password2PasswordField.getText().isBlank() == false)
 			&&
 			(password1PasswordField.getText().equals(password2PasswordField.getText()))
 		) {
@@ -173,20 +152,19 @@ public class RegistrationController {
 	
 	boolean isCheckNumbers() {
 		boolean result = false;
-		int hak = 0;
-		int ban = 0;
-		int bun = 0;
+		int classnum = 0;
+		String city = null;
+		String bun = null;
 		
 		try {
-			hak = Integer.parseInt(hakTextField.getText());
-			ban = Integer.parseInt(banTextField.getText());
-			bun = Integer.parseInt(bunTextField.getText());
+			classnum = Integer.parseInt(classnumTextField.getText());
+			city = cityTextField.getText();
+			bun = bunTextField.getText();
 			
 			if(
-				(hak >= 1 && hak <= 3)
-				&& (ban >= 1 && ban <= 15)
-				&& (bun >= 1 && bun <= 31)
-			) { // ÇĞ³â, ¹İ, ¹øÈ£ÀÇ ¼ıÀÚ¸¦ °Ë»çÇØ¼­ Åë°úÇÑ °æ¿ì
+				(classnum >= 501 && classnum <= 505)
+				&& (bun == "O" || bun == "X")
+			) { // í´ë˜ìŠ¤ ë²ˆí˜¸ê°€ 501~505í˜¸ ì‚¬ì´, ìê²©ì¦ O ë˜ëŠ” X
 				result = true;
 			}
 			
@@ -196,4 +174,38 @@ public class RegistrationController {
 			return result;
 		}
 	}
+	
+	void readMemberData() {
+		if(
+			Main.global_user_id.isEmpty() == false
+			&&
+			Main.global_user_id.length() > 0
+		) {
+			DBConnection connNow = new DBConnection();
+			Connection conn = connNow.getConnection();
+			
+			String sql = "SELECT * FROM member_accounts "
+					+ "WHERE user_id='" + Main.global_user_id + "'";
+			
+			try {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				while(rs.next() ) {
+					usernameTextField.setText(rs.getString("user_name"));
+					useridTextField.setText(rs.getString("user_id"));
+					password1PasswordField.setText(rs.getString("user_password"));
+					password2PasswordField.setText(rs.getString("user_password"));
+					classnumTextField.setText(rs.getString("class_num"));
+					cityTextField.setText(rs.getString("city"));
+					bunTextField.setText(rs.getString("jungbo"));
+				}
+				
+				stmt.close();
+				rs.close();
+				conn.close();
+			} catch(Exception e) {}
+		}
+	}
 }
+
