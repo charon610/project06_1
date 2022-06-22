@@ -37,7 +37,7 @@ public class MembershipController implements Initializable {
 	@FXML
 	private TextField hakTextField;
 	@FXML
-	private TextField banTextField;
+	private TextField cityTextField;
 	@FXML
 	private TextField bunTextField;
 	@FXML
@@ -63,7 +63,7 @@ public class MembershipController implements Initializable {
 	@FXML
 	private TableColumn<Member, String> userHakTableColumn;
 	@FXML
-	private TableColumn<Member, String> userBanTableColumn;
+	private TableColumn<Member, String> usercityTableColumn;
 	@FXML
 	private TableColumn<Member, String> userBunTableColumn;
 
@@ -105,7 +105,7 @@ public class MembershipController implements Initializable {
 							pstmt.setString(1, usernameTextField.getText());
 							pstmt.setString(2, password1PasswordField.getText());
 							pstmt.setString(3, hakTextField.getText());
-							pstmt.setString(4, banTextField.getText());
+							pstmt.setString(4, cityTextField.getText());
 							pstmt.setString(5, bunTextField.getText());
 							pstmt.setString(6, useridTextField.getText());
 							pstmt.executeUpdate();
@@ -159,7 +159,7 @@ public class MembershipController implements Initializable {
 					userIdTableColumn.setText("");
 					userPasswordTableColumn.setText("");
 					userHakTableColumn.setText("");
-					userBanTableColumn.setText("");
+					usercityTableColumn.setText("");
 					userBunTableColumn.setText("");
 					
 					readlistButtonOnAction();
@@ -190,7 +190,7 @@ public class MembershipController implements Initializable {
 							rs.getString("user_id"),
 							rs.getString("user_password"),
 							rs.getString("user_hak"),
-							rs.getString("user_ban"),
+							rs.getString("city"),
 							rs.getString("user_bun")
 					)
 				);
@@ -214,7 +214,7 @@ public class MembershipController implements Initializable {
 			password1PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
 			password2PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
 			hakTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserHak());
-			banTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserBan());
+			cityTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUsercity());
 			bunTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserBun());
 		}
 	}
@@ -226,7 +226,7 @@ public class MembershipController implements Initializable {
 		userIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		userPasswordTableColumn.setCellValueFactory(new PropertyValueFactory<>("userPassword"));
 		userHakTableColumn.setCellValueFactory(new PropertyValueFactory<>("userHak"));
-		userBanTableColumn.setCellValueFactory(new PropertyValueFactory<>("userBan"));
+		usercityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
 		userBunTableColumn.setCellValueFactory(new PropertyValueFactory<>("userBun"));
 		
 		readlistButtonOnAction();
@@ -240,7 +240,7 @@ public class MembershipController implements Initializable {
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
 			&& hakTextField.getText().isBlank() == false
-			&& banTextField.getText().isBlank() == false
+			&& cityTextField.getText().isBlank() == false
 			&& bunTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
@@ -263,20 +263,19 @@ public class MembershipController implements Initializable {
 	
 	boolean isCheckNumbers() {
 		boolean result = false;
-		int hak = 0;
-		int ban = 0;
-		int bun = 0;
+		int classnum = 0;
+		int city = 0;
+		String jungbo = null;
 		
 		try {
-			hak = Integer.parseInt(hakTextField.getText());
-			ban = Integer.parseInt(banTextField.getText());
-			bun = Integer.parseInt(bunTextField.getText());
+			classnum = Integer.parseInt(classnumTextField.getText());
+			city = Integer.parseInt(cityTextField.getText());
+			jungbo = jungboTextField.getText();
 			
 			if(
-				(hak >= 1 && hak <= 3)
-				&& (ban >= 1 && ban <= 15)
-				&& (bun >= 1 && bun <= 31)
-			) { // 학년, 반, 번호의 숫자를 검사해서 통과한 경우
+				(classnum >= 501 && classnum <= 505)
+				&& (jungbo == "O" || jungbo == "X")
+				) { // 클래스 번호가 501~505호 사이, 자격증 O 또는 X
 				result = true;
 			}
 			
