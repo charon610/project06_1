@@ -2,22 +2,22 @@ package application;
 
 public class Member {
 	String userName = null;
-	String userId = null;
-	String userPassword = null;
-	String userHak = null;
+	String usergender = null;
+	String classname = null;
+	String classnum = null;
 	String city = null;
-	String userBun = null;
+	String jungbo = null;
 	public Member() {
 		this("", "", "", "", "", "");
 	}
-	public Member(String userName, String userId, String userPassword, String userHak, String userBan, String userBun) {
+	public Member(String userName, String usergender, String classname, String classnum, String city, String jungbo) {
 		super();
 		this.userName = userName;
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userHak = userHak;
-		this.city = userBan;
-		this.userBun = userBun;
+		this.usergender = usergender;
+		this.classname = classname;
+		this.classnum = classnum;
+		this.city = city;
+		this.jungbo = jungbo;
 	}
 	public String getUserName() {
 		return userName;
@@ -25,34 +25,34 @@ public class Member {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserId() {
-		return userId;
+	public String getusergender() {
+		return usergender;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setusergender(String usergender) {
+		this.usergender = usergender;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public String getclassname() {
+		return classname;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setclassname(String classname) {
+		this.classname = classname;
 	}
-	public String getUserHak() {
-		return userHak;
+	public String getclassnum() {
+		return classnum;
 	}
-	public void setUserHak(String userHak) {
-		this.userHak = userHak;
-	}
-	public String getUserBan() {
-		return city;
-	}
-	public void setUserBan(String userBan) {
-		this.city = userBan;
+	public void setclassnum(String classnum) {
+		this.classnum = classnum;
 	}
 	public String getCity() {
 		return city;
 	}
-	public void setUserBun(String userBun) {
-		this.userBun = userBun;
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getjungbo() {
+		return jungbo;
+	}
+	public void setjungbo(String jungbo) {
+		this.jungbo = jungbo;
 	}
 }

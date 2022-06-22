@@ -29,17 +29,17 @@ public class MembershipController implements Initializable {
 	@FXML
 	private TextField usernameTextField;
 	@FXML
-	private TextField useridTextField;
+	private TextField usergenderTextField;
 	@FXML
 	private PasswordField password1PasswordField;
 	@FXML
 	private PasswordField password2PasswordField;
 	@FXML
-	private TextField hakTextField;
+	private TextField classnumTextField;
 	@FXML
 	private TextField cityTextField;
 	@FXML
-	private TextField bunTextField;
+	private TextField jungboTextField;
 	@FXML
 	private Label membershipMessageLabel;
 	@FXML
@@ -57,15 +57,15 @@ public class MembershipController implements Initializable {
 	@FXML
 	private TableColumn<Member, String> userNameTableColumn;
 	@FXML
-	private TableColumn<Member, String> userIdTableColumn;
+	private TableColumn<Member, String> usergenderTableColumn;
 	@FXML
 	private TableColumn<Member, String> userPasswordTableColumn;
 	@FXML
-	private TableColumn<Member, String> userHakTableColumn;
+	private TableColumn<Member, String> classnumTableColumn;
 	@FXML
-	private TableColumn<Member, String> usercityTableColumn;
+	private TableColumn<Member, String> cityTableColumn;
 	@FXML
-	private TableColumn<Member, String> userBunTableColumn;
+	private TableColumn<Member, String> jungboTableColumn;
 
 	@FXML
 	void updateButtonOnAction() {
@@ -82,7 +82,7 @@ public class MembershipController implements Initializable {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("관리자 모듈 : 회원정보 수정");
 					alert.setHeaderText("회원정보 수정");
-					alert.setContentText(useridTextField.getText() + " 님의 회원정보를 수정하시겠습니까?");
+					alert.setContentText(usergenderTextField.getText() + " 님의 회원정보를 수정하시겠습니까?");
 					Optional<ButtonType> alertResult = alert.showAndWait();
 					
 					if(alertResult.get() == ButtonType.OK) {
@@ -104,10 +104,10 @@ public class MembershipController implements Initializable {
 							PreparedStatement pstmt = conn.prepareStatement(sql);
 							pstmt.setString(1, usernameTextField.getText());
 							pstmt.setString(2, password1PasswordField.getText());
-							pstmt.setString(3, hakTextField.getText());
+							pstmt.setString(3, classnumTextField.getText());
 							pstmt.setString(4, cityTextField.getText());
-							pstmt.setString(5, bunTextField.getText());
-							pstmt.setString(6, useridTextField.getText());
+							pstmt.setString(5, jungboTextField.getText());
+							pstmt.setString(6, usergenderTextField.getText());
 							pstmt.executeUpdate();
 							
 							pstmt.close();
@@ -137,7 +137,7 @@ public class MembershipController implements Initializable {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("관리자 모듈 : 회원정보 삭제");
 			alert.setHeaderText("회원정보 삭제");
-			alert.setContentText(useridTextField.getText() + " 님의 회원정보를 삭제하시겠습니까?");
+			alert.setContentText(usergenderTextField.getText() + " 님의 회원정보를 삭제하시겠습니까?");
 			Optional<ButtonType> alertResult = alert.showAndWait();
 			if(alertResult.get() == ButtonType.OK) {
 				DBConnection connNow = new DBConnection();
@@ -148,7 +148,7 @@ public class MembershipController implements Initializable {
 				
 				try {
 					PreparedStatement pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, useridTextField.getText());
+					pstmt.setString(1, usergenderTextField.getText());
 					pstmt.executeUpdate();
 					
 					pstmt.close();
@@ -156,11 +156,11 @@ public class MembershipController implements Initializable {
 					
 					membershipMessageLabel.setText("회원 정보 수정을 완료했습니다!");
 					
-					userIdTableColumn.setText("");
+					usergenderTableColumn.setText("");
 					userPasswordTableColumn.setText("");
-					userHakTableColumn.setText("");
-					usercityTableColumn.setText("");
-					userBunTableColumn.setText("");
+					classnumTableColumn.setText("");
+					cityTableColumn.setText("");
+					jungboTableColumn.setText("");
 					
 					readlistButtonOnAction();
 				} catch(Exception e) {
@@ -187,11 +187,11 @@ public class MembershipController implements Initializable {
 				dataList.add(
 					new Member(
 							rs.getString("user_name"),
-							rs.getString("user_id"),
+							rs.getString("user_gender"),
 							rs.getString("user_password"),
-							rs.getString("user_hak"),
+							rs.getString("classnum"),
 							rs.getString("city"),
-							rs.getString("user_bun")
+							rs.getString("jungbo")
 					)
 				);
 			}
@@ -210,12 +210,12 @@ public class MembershipController implements Initializable {
 	void membershipTableViewOnAction() {
 		if(membershipTableView.getSelectionModel().getSelectedItem() != null) {
 			usernameTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserName());
-			useridTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserId());
-			password1PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
-			password2PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
-			hakTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserHak());
-			cityTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUsercity());
-			bunTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserBun());
+			usergenderTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getusergender());
+			password1PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getclassname());
+			password2PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getclassname());
+			classnumTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getclassnum());
+			cityTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getCity());
+			jungboTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getjungbo());
 		}
 	}
 
@@ -223,11 +223,11 @@ public class MembershipController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//System.out.println("멤버쉽 모듈 창이 열려서 초기화 함수(initialize)를 실행했습니다.");
 		userNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
-		userIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+		usergenderTableColumn.setCellValueFactory(new PropertyValueFactory<>("usergender"));
 		userPasswordTableColumn.setCellValueFactory(new PropertyValueFactory<>("userPassword"));
-		userHakTableColumn.setCellValueFactory(new PropertyValueFactory<>("userHak"));
-		usercityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
-		userBunTableColumn.setCellValueFactory(new PropertyValueFactory<>("userBun"));
+		classnumTableColumn.setCellValueFactory(new PropertyValueFactory<>("classnum"));
+		cityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+		jungboTableColumn.setCellValueFactory(new PropertyValueFactory<>("jungbo"));
 		
 		readlistButtonOnAction();
 	}
@@ -236,12 +236,12 @@ public class MembershipController implements Initializable {
 		boolean result = false;
 		if(
 			usernameTextField.getText().isBlank() == false
-			&& useridTextField.getText().isBlank() == false
+			&& usergenderTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& hakTextField.getText().isBlank() == false
+			&& classnumTextField.getText().isBlank() == false
 			&& cityTextField.getText().isBlank() == false
-			&& bunTextField.getText().isBlank() == false
+			&& jungboTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
 		}
@@ -264,12 +264,10 @@ public class MembershipController implements Initializable {
 	boolean isCheckNumbers() {
 		boolean result = false;
 		int classnum = 0;
-		int city = 0;
 		String jungbo = null;
 		
 		try {
 			classnum = Integer.parseInt(classnumTextField.getText());
-			city = Integer.parseInt(cityTextField.getText());
 			jungbo = jungboTextField.getText();
 			
 			if(

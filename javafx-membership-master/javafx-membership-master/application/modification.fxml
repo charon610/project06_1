@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModificationController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModificationController">
    <top>
       <AnchorPane prefHeight="84.0" prefWidth="600.0" style="-fx-background-color: #ccd3ff;" BorderPane.alignment="CENTER">
          <children>
@@ -35,9 +35,9 @@
             <TextField fx:id="useridTextField" editable="false" layoutX="154.0" layoutY="84.0" prefHeight="26.0" prefWidth="389.0" />
             <PasswordField fx:id="password1PasswordField" layoutX="154.0" layoutY="117.0" prefHeight="26.0" prefWidth="390.0" />
             <PasswordField fx:id="password2PasswordField" layoutX="155.0" layoutY="151.0" prefHeight="26.0" prefWidth="390.0" />
-            <TextField fx:id="hakTextField" layoutX="154.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
-            <TextField fx:id="banTextField" layoutX="283.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
-            <TextField fx:id="bunTextField" layoutX="469.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
+            <TextField fx:id="classnumTextField" layoutX="154.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
+            <TextField fx:id="cityTextField" layoutX="283.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
+            <TextField fx:id="jungboTextField" layoutX="469.0" layoutY="195.0" prefHeight="26.0" prefWidth="54.0" />
             <Button fx:id="modifyButton" layoutX="66.0" layoutY="229.0" mnemonicParsing="false" onAction="#modifyButtonOnAction" prefHeight="64.0" prefWidth="237.0" style="-fx-background-color: #304dff;" text="회원 정보 수정하기" textFill="WHITE" />
             <Button fx:id="resetButton" layoutX="308.0" layoutY="229.0" mnemonicParsing="false" onAction="#resetButtonOnAction" prefHeight="64.0" prefWidth="160.0" style="-fx-background-color: #304dff;" text="초기화 하기" textFill="WHITE" />
             <Button fx:id="closeButton" layoutX="474.0" layoutY="229.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #304dff;" text="창닫기" textFill="WHITE" />
