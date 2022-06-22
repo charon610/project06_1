@@ -1,0 +1,39 @@
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('21', '강민춘', '남', '웹퍼블리셔', '502', '안산시', 'O');
+ 
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('22', '이한수', '여', '웹퍼블리셔', '502', '시흥시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('23', '서혜리', '여', '웹퍼블리셔', '502', '인천', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('24', '표한결', '남', '웹퍼블리셔', '502', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('25', '백조은', '여', '웹퍼블리셔', '502', '시흥시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('26', '류오성', '남', '웹퍼블리셔', '502', '수원시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('27', '남장미', '여', '웹퍼블리셔', '502', '수원시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('28', '유미란', '여', '웹퍼블리셔', '502', '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('29', '안장미', '여', '웹퍼블리셔', '502', '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('30', '정윤준', '남', '웹퍼블리셔', '502', '인천', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('31', '유미란', '여', '웹퍼블리셔', '502', '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('32', '정나래', '여', '웹퍼블리셔', '502', '수원시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('33', '오남규', '남', '웹퍼블리셔', '502', '인천', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('34', '고덕수', '남', '웹퍼블리셔', '502', '수원시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('35', '탁재범', '남', '웹퍼블리셔', '502', '부천시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('36', '이민서', '여', '웹퍼블리셔', '502', '부천시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('37', '표은채', '여', '웹퍼블리셔', '502', '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('38', '이광조', '남', '웹퍼블리셔', '502', '부천시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('39', '신경택', '남', '웹퍼블리셔', '502', '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo) values ('40', '유미란', '여', '웹퍼블리셔', '502', '안산시', 'O');
