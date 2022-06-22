@@ -35,11 +35,11 @@ public class MembershipController implements Initializable {
 	@FXML
 	private PasswordField password2PasswordField;
 	@FXML
-	private TextField hakTextField;
+	private TextField classnumTextField;
 	@FXML
 	private TextField cityTextField;
 	@FXML
-	private TextField bunTextField;
+	private TextField jungboTextField;
 	@FXML
 	private Label membershipMessageLabel;
 	@FXML
@@ -61,11 +61,11 @@ public class MembershipController implements Initializable {
 	@FXML
 	private TableColumn<Member, String> userPasswordTableColumn;
 	@FXML
-	private TableColumn<Member, String> userHakTableColumn;
+	private TableColumn<Member, String> classnumTableColumn;
 	@FXML
-	private TableColumn<Member, String> usercityTableColumn;
+	private TableColumn<Member, String> cityTableColumn;
 	@FXML
-	private TableColumn<Member, String> userBunTableColumn;
+	private TableColumn<Member, String> jungboTableColumn;
 
 	@FXML
 	void updateButtonOnAction() {
@@ -104,9 +104,9 @@ public class MembershipController implements Initializable {
 							PreparedStatement pstmt = conn.prepareStatement(sql);
 							pstmt.setString(1, usernameTextField.getText());
 							pstmt.setString(2, password1PasswordField.getText());
-							pstmt.setString(3, hakTextField.getText());
+							pstmt.setString(3, classnumTextField.getText());
 							pstmt.setString(4, cityTextField.getText());
-							pstmt.setString(5, bunTextField.getText());
+							pstmt.setString(5, jungboTextField.getText());
 							pstmt.setString(6, useridTextField.getText());
 							pstmt.executeUpdate();
 							
@@ -158,9 +158,9 @@ public class MembershipController implements Initializable {
 					
 					userIdTableColumn.setText("");
 					userPasswordTableColumn.setText("");
-					userHakTableColumn.setText("");
-					usercityTableColumn.setText("");
-					userBunTableColumn.setText("");
+					classnumTableColumn.setText("");
+					cityTableColumn.setText("");
+					jungboTableColumn.setText("");
 					
 					readlistButtonOnAction();
 				} catch(Exception e) {
@@ -189,9 +189,9 @@ public class MembershipController implements Initializable {
 							rs.getString("user_name"),
 							rs.getString("user_id"),
 							rs.getString("user_password"),
-							rs.getString("user_hak"),
+							rs.getString("classnum"),
 							rs.getString("city"),
-							rs.getString("user_bun")
+							rs.getString("jungbo")
 					)
 				);
 			}
@@ -213,9 +213,9 @@ public class MembershipController implements Initializable {
 			useridTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserId());
 			password1PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
 			password2PasswordField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserPassword());
-			hakTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserHak());
-			cityTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUsercity());
-			bunTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getUserBun());
+			classnumTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getclassnum());
+			cityTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getCity());
+			jungboTextField.setText(membershipTableView.getSelectionModel().getSelectedItem().getjungbo());
 		}
 	}
 
@@ -225,9 +225,9 @@ public class MembershipController implements Initializable {
 		userNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
 		userIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		userPasswordTableColumn.setCellValueFactory(new PropertyValueFactory<>("userPassword"));
-		userHakTableColumn.setCellValueFactory(new PropertyValueFactory<>("userHak"));
-		usercityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
-		userBunTableColumn.setCellValueFactory(new PropertyValueFactory<>("userBun"));
+		classnumTableColumn.setCellValueFactory(new PropertyValueFactory<>("classnum"));
+		cityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+		jungboTableColumn.setCellValueFactory(new PropertyValueFactory<>("jungbo"));
 		
 		readlistButtonOnAction();
 	}
@@ -239,9 +239,9 @@ public class MembershipController implements Initializable {
 			&& useridTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& hakTextField.getText().isBlank() == false
+			&& classnumTextField.getText().isBlank() == false
 			&& cityTextField.getText().isBlank() == false
-			&& bunTextField.getText().isBlank() == false
+			&& jungboTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
 		}
@@ -264,12 +264,10 @@ public class MembershipController implements Initializable {
 	boolean isCheckNumbers() {
 		boolean result = false;
 		int classnum = 0;
-		int city = 0;
 		String jungbo = null;
 		
 		try {
 			classnum = Integer.parseInt(classnumTextField.getText());
-			city = Integer.parseInt(cityTextField.getText());
 			jungbo = jungboTextField.getText();
 			
 			if(

@@ -4,20 +4,20 @@ public class Member {
 	String userName = null;
 	String userId = null;
 	String userPassword = null;
-	String userHak = null;
+	String classnum = null;
 	String city = null;
-	String userBun = null;
+	String jungbo = null;
 	public Member() {
 		this("", "", "", "", "", "");
 	}
-	public Member(String userName, String userId, String userPassword, String userHak, String userBan, String userBun) {
+	public Member(String userName, String userId, String userPassword, String classnum, String city, String jungbo) {
 		super();
 		this.userName = userName;
 		this.userId = userId;
 		this.userPassword = userPassword;
-		this.userHak = userHak;
-		this.city = userBan;
-		this.userBun = userBun;
+		this.classnum = classnum;
+		this.city = city;
+		this.jungbo = jungbo;
 	}
 	public String getUserName() {
 		return userName;
@@ -37,22 +37,22 @@ public class Member {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public String getUserHak() {
-		return userHak;
+	public String getclassnum() {
+		return classnum;
 	}
-	public void setUserHak(String userHak) {
-		this.userHak = userHak;
-	}
-	public String getUserBan() {
-		return city;
-	}
-	public void setUserBan(String userBan) {
-		this.city = userBan;
+	public void setclassnum(String classnum) {
+		this.classnum = classnum;
 	}
 	public String getCity() {
 		return city;
 	}
-	public void setUserBun(String userBun) {
-		this.userBun = userBun;
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getjungbo() {
+		return jungbo;
+	}
+	public void setjungbo(String jungbo) {
+		this.jungbo = jungbo;
 	}
 }
