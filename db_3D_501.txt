@@ -1,0 +1,68 @@
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (1, '김태영', '남', '3D MAX', '501', '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (2, '박은지', '여', '3D MAX', '501', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (3, '김하늘', '여', '3D MAX', '501', '화성시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (4, '홍명보', '남', '3D MAX', '501', '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (5, '이운재', '남', '3D MAX', '501', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (6, '박주영', '남', '3D MAX', '501', '화성시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (7, '박지성', '남', '3D MAX', '501', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (8, '서은지', '여', '3D MAX', '501', '화성시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (9, '현영민', '남', '3D MAX', '501', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (10, '장미란', '여', '3D MAX', '501', '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (11, '현아영', '여', '3D MAX', '501', '서울시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (12, '강준구', '남', '3D MAX', '501', '안산시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (13, '김병지', '남', '3D MAX', '501', '시흥시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (14, '이운재', '남', '3D MAX', '501', '안산시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (15, '최은성', '여', '3D MAX', '501', '안양시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (16, '김연경', '여', '3D MAX', '501', '안양시', 'X');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (17, '염혜선', '여', '3D MAX', '501', '안산시', 'O');
+
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (18, '유상철', '여', '3D MAX', '501', '서울시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (19, '김남일', '남', '3D MAX', '501', '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (20, '양효진', '여', '3D MAX', '501', '수원시', 'X');
+
+
