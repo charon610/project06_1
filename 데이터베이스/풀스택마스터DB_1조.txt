@@ -1,0 +1,60 @@
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (81, '복우주', '남', '풀스택 마스터', 505, '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (82, '봉상준', '남', '풀스택 마스터', 505, '인천', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (83, '서수정', '여', '풀스택 마스터', 505, '안양시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (84, '추우영', '남', '풀스택 마스터', 505, '수원시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (85, '풍형기', '남', '풀스택 마스터', 505, '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (86, '이상학', '남', '풀스택 마스터', 505, '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (87, '황보석진', '남', '풀스택 마스터', 505, '시흥시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (88, '신민수', '남', '풀스택 마스터', 505, '부천시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (89, '심수경', '여', '풀스택 마스터', 505, '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (90, '하예영', '여', '풀스택 마스터', 505, '부천시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (91, '추서언', '남', '풀스택 마스터', 505, '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (92, '송재윤', '남', '풀스택 마스터', 505, '안양시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (93, '허성희', '여', '풀스택 마스터', 505, '시흥시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (94, '제갈선우', '남', '풀스택 마스터', 505, '인천시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (95, '오은주', '여', '풀스택 마스터', 505, '안양시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (96, '추민훈', '남', '풀스택 마스터', 505, '안산시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (97, '하용현', '남', '풀스택 마스터', 505, '수원시', 'O');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (98, '최원경', '남', '풀스택 마스터', 505, '안산시', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (99, '정종훈', '남', '풀스택 마스터', 505, '인천', 'X');
+
+insert into member_accounts(idx, user_name, user_gender, class_name, class_num, city, jungbo)
+values (100, '권주혜', '여', '풀스택 마스터', 505, '수원시', 'X');
