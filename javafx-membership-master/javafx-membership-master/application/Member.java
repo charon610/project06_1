@@ -5,7 +5,7 @@ public class Member {
 	String userId = null;
 	String userPassword = null;
 	String userHak = null;
-	String userBan = null;
+	String city = null;
 	String userBun = null;
 	public Member() {
 		this("", "", "", "", "", "");
@@ -16,7 +16,7 @@ public class Member {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userHak = userHak;
-		this.userBan = userBan;
+		this.city = userBan;
 		this.userBun = userBun;
 	}
 	public String getUserName() {
@@ -44,13 +44,13 @@ public class Member {
 		this.userHak = userHak;
 	}
 	public String getUserBan() {
-		return userBan;
+		return city;
 	}
 	public void setUserBan(String userBan) {
-		this.userBan = userBan;
+		this.city = userBan;
 	}
-	public String getUserBun() {
-		return userBun;
+	public String getCity() {
+		return city;
 	}
 	public void setUserBun(String userBun) {
 		this.userBun = userBun;
