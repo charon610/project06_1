@@ -29,11 +29,11 @@ public class ModificationController implements Initializable {
 	@FXML
 	private PasswordField password2PasswordField;
 	@FXML
-	private TextField hakTextField;
+	private TextField classnumTextField;
 	@FXML
-	private TextField banTextField;
+	private TextField cityTextField;
 	@FXML
-	private TextField bunTextField;
+	private TextField jungboTextField;
 	@FXML
 	private Label modifyMessageLabel;
 	@FXML
@@ -75,19 +75,19 @@ public class ModificationController implements Initializable {
 				String sql = "UPDATE member_accounts "
 						+ "SET "
 						+ "user_name=?, "
-						+ "user_password=?, "
-						+ "user_hak=?, "
-						+ "user_ban=?, "
-						+ "user_bun=? "
+						+ "class_name=?, "
+						+ "class_num=?, "
+						+ "city=?, "
+						+ "jungbo=? "
 						+ "WHERE user_id=?";
 				
 				try {
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, usernameTextField.getText());
 					pstmt.setString(2, password1PasswordField.getText());
-					pstmt.setString(3, hakTextField.getText());
-					pstmt.setString(4, banTextField.getText());
-					pstmt.setString(5, bunTextField.getText());
+					pstmt.setString(3, classnumTextField.getText());
+					pstmt.setString(4, cityTextField.getText());
+					pstmt.setString(5, jungboTextField.getText());
 					pstmt.setString(6, useridTextField.getText());
 					pstmt.executeUpdate();
 					
@@ -128,9 +128,9 @@ public class ModificationController implements Initializable {
 			&& useridTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& hakTextField.getText().isBlank() == false
-			&& banTextField.getText().isBlank() == false
-			&& bunTextField.getText().isBlank() == false
+			&& classnumTextField.getText().isBlank() == false
+			&& cityTextField.getText().isBlank() == false
+			&& jungboTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
 		}
@@ -152,22 +152,21 @@ public class ModificationController implements Initializable {
 	
 	boolean isCheckNumbers() {
 		boolean result = false;
-		int hak = 0;
-		int ban = 0;
-		int bun = 0;
+		int classnum = 0;
+		int city = 0;
+		String jungbo = null;
 		
 		try {
-			hak = Integer.parseInt(hakTextField.getText());
-			ban = Integer.parseInt(banTextField.getText());
-			bun = Integer.parseInt(bunTextField.getText());
+			classnum = Integer.parseInt(classnumTextField.getText());
+			city = Integer.parseInt(cityTextField.getText());
+			jungbo = jungboTextField.getText();
 			
 			if(
-				(hak >= 1 && hak <= 3)
-				&& (ban >= 1 && ban <= 15)
-				&& (bun >= 1 && bun <= 31)
-			) { // 학년, 반, 번호의 숫자를 검사해서 통과한 경우
-				result = true;
-			}
+				(classnum >= 501 && classnum <= 505)
+				&& (jungbo == "O" || jungbo == "X")
+				) { // 클래스 번호가 501~505호 사이, 자격증 O 또는 X
+					result = true;
+				}
 			
 			return result;
 		} catch(NumberFormatException e) {
@@ -197,9 +196,9 @@ public class ModificationController implements Initializable {
 					useridTextField.setText(rs.getString("user_id"));
 					password1PasswordField.setText(rs.getString("user_password"));
 					password2PasswordField.setText(rs.getString("user_password"));
-					hakTextField.setText(rs.getString("user_hak"));
-					banTextField.setText(rs.getString("user_ban"));
-					bunTextField.setText(rs.getString("user_bun"));
+					classnumTextField.setText(rs.getString("class_num"));
+					cityTextField.setText(rs.getString("city"));
+					jungboTextField.setText(rs.getString("jungbo"));
 				}
 				
 				stmt.close();

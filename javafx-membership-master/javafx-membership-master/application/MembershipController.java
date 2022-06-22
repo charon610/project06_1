@@ -94,10 +94,10 @@ public class MembershipController implements Initializable {
 						String sql = "UPDATE member_accounts "
 								+ "SET "
 								+ "user_name=?, "
-								+ "user_password=?, "
-								+ "user_hak=?, "
-								+ "user_ban=?, "
-								+ "user_bun=? "
+								+ "class_name=?, "
+								+ "class_num=?, "
+								+ "city=?, "
+								+ "jungbo=? "
 								+ "WHERE user_id=?";
 						
 						try {

@@ -1,122 +1,117 @@
 package application;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ModificationController implements Initializable {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class RegistrationController {
 	@FXML
 	private TextField usernameTextField;
 	@FXML
 	private TextField useridTextField;
 	@FXML
+	private TextField hakTextField;
+	@FXML
+	private TextField banTextField;
+	@FXML
+	private TextField bunTextField;
+	@FXML
 	private PasswordField password1PasswordField;
 	@FXML
 	private PasswordField password2PasswordField;
 	@FXML
-	private TextField classnumTextField;
+	private Label registerMessageLabel;
 	@FXML
-	private TextField cityTextField;
+	private Button submitButton;
 	@FXML
-	private TextField bunTextField;
-	@FXML
-	private Label modifyMessageLabel;
-	@FXML
-	private Button modifyButton;
-	@FXML
-	private Button resetButton;
+	private Button cancelButton;
 	@FXML
 	private Button closeButton;
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		readMemberData();	
-	}	
-	
 	@FXML
-	void modifyButtonOnAction() {
+	void submitButtonOnAction() {
 		// 입력한 값을 체크합니다
 		boolean checkEmpty = isCheckEmpty();
+		boolean checkDuplicatedId = isCheckDuplicatedId();
 		boolean checkPasswordSame = isCheckPasswordSame();
 		boolean checkNumbers = isCheckNumbers();
 		
 		if(
 				checkEmpty == true
+				&& checkDuplicatedId == true
 				&& checkPasswordSame == true
 				&& checkNumbers == true
 				) { // 모든 체크를 통과했을 경우 데이터베이스에 저장한다
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("회원정보 수정 모듈");
-			alert.setHeaderText("회원정보 수정");
-			alert.setContentText(useridTextField.getText() + " 님의 회원정보를 수정하시겠습니까?");
-			Optional<ButtonType> alertResult = alert.showAndWait();
+			registerMessageLabel.setText("회원 정보를 데이터베이스에 저장합니다...");
 			
-			if(alertResult.get() == ButtonType.OK) {
-				modifyMessageLabel.setText("회원 정보를 수정합니다...");
+			DBConnection connNow = new DBConnection();
+			Connection conn = connNow.getConnection();
+			
+			String sql = "INSERT INTO member_accounts "
+					+ "(idx, user_name, user_gender, class_name, class_num, city, jungbo) "
+					+ "VALUES "
+					+ "(member_idx_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+			
+			try {
+				// 데이터베이스에 값을 저장하는 SQL문 실행
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, usernameTextField.getText());
+				pstmt.setString(2, useridTextField.getText());
+				pstmt.setString(3, password1PasswordField.getText());
+				pstmt.setString(4, hakTextField.getText());
+				pstmt.setString(5, banTextField.getText());
+				pstmt.setString(6, bunTextField.getText());
+				pstmt.executeUpdate();
 				
-				DBConnection connNow = new DBConnection();
-				Connection conn = connNow.getConnection();
+				pstmt.close();
+				conn.close();
 				
-				String sql = "UPDATE member_accounts "
-						+ "SET "
-						+ "user_name=?, "
-						+ "class_name=?, "
-						+ "class_num=?, "
-						+ "city=?, "
-						+ "jungbo=? "
-						+ "WHERE user_id=?";
-				
-				try {
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, usernameTextField.getText());
-					pstmt.setString(2, password1PasswordField.getText());
-					pstmt.setString(3, classnumTextField.getText());
-					pstmt.setString(4, cityTextField.getText());
-					pstmt.setString(5, bunTextField.getText());
-					pstmt.setString(6, useridTextField.getText());
-					pstmt.executeUpdate();
-					
-					pstmt.close();
-					conn.close();
-					
-					modifyMessageLabel.setText("회원 정보 수정을 완료했습니다!");
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
+				registerMessageLabel.setText("데이터베이스에 회원정보 입력 완료!");
+				usernameTextField.setText("");
+				useridTextField.setText("");
+				password1PasswordField.setText("");
+				password2PasswordField.setText("");
+				hakTextField.setText("");
+				banTextField.setText("");
+				bunTextField.setText("");
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 		} else {
 			if(checkEmpty == false) {
-				modifyMessageLabel.setText("모든 정보를 입력해주세요!");
+				registerMessageLabel.setText("모든 정보를 입력해주세요!");
+			} else if(checkDuplicatedId == false) {
+				registerMessageLabel.setText("아이디가 중복됩니다. 다른 아이디를 입력해주세요!");
 			} else if(checkPasswordSame == false) {
-				modifyMessageLabel.setText("입력한 암호가 동일하지 않습니다. 다시 확인해주세요!");
+				registerMessageLabel.setText("입력한 암호가 동일하지 않습니다. 다시 확인해주세요!");
 			} else if(checkNumbers == false) {
-				modifyMessageLabel.setText("학년, 반, 번호를 잘못 입력했습니다!");
+				registerMessageLabel.setText("학년, 반, 번호를 잘못 입력했습니다!");
 			}
 		}
 	}
 	
 	@FXML
-	void resetButtonOnAction() {
-		readMemberData();
+	void cancelButtonOnAction(ActionEvent e) {
+		usernameTextField.setText("");
+		useridTextField.setText("");
+		hakTextField.setText("");
+		banTextField.setText("");
+		bunTextField.setText("");
+		password1PasswordField.setText("");
+		password2PasswordField.setText("");
 	}
 	
 	@FXML
-	void closeButtonOnAction() {
+	void closeButtonOnAction(ActionEvent e) {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
@@ -128,20 +123,46 @@ public class ModificationController implements Initializable {
 			&& useridTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& classnumTextField.getText().isBlank() == false
-			&& cityTextField.getText().isBlank() == false
+			&& hakTextField.getText().isBlank() == false
+			&& banTextField.getText().isBlank() == false
 			&& bunTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
 		}
 		return result;
 	}
+	
+	boolean isCheckDuplicatedId() { // 데이터베이스에서 아이디 중복을 체크한다
+		boolean result = true;
+		DBConnection connNow = new DBConnection();
+		Connection conn = connNow.getConnection();
 		
+		String sql = "SELECT COUNT(1) FROM member_accounts "
+				+ " WHERE user_id='" + useridTextField.getText() + "'";
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				if(rs.getInt(1) == 1) {
+					result = false;
+				}
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch(Exception e) {
+		}
+		
+		return result;
+	}
+	
 	boolean isCheckPasswordSame() {
 		boolean result = false;
 		if(
 			(password1PasswordField.getText().isBlank() == false
-			    && password2PasswordField.getText().isBlank() == false)
+			  && password2PasswordField.getText().isBlank() == false)
 			&&
 			(password1PasswordField.getText().equals(password2PasswordField.getText()))
 		) {
@@ -152,19 +173,20 @@ public class ModificationController implements Initializable {
 	
 	boolean isCheckNumbers() {
 		boolean result = false;
-		int classnum = 0;
-		String city = null;
-		String bun = null;
+		int hak = 0;
+		int ban = 0;
+		int bun = 0;
 		
 		try {
-			classnum = Integer.parseInt(classnumTextField.getText());
-			city = cityTextField.getText();
-			bun = bunTextField.getText();
+			hak = Integer.parseInt(hakTextField.getText());
+			ban = Integer.parseInt(banTextField.getText());
+			bun = Integer.parseInt(bunTextField.getText());
 			
 			if(
-				(classnum >= 501 && classnum <= 505)
-				&& (bun == "O" || bun == "X")
-			) { // 클래스 번호가 501~505호 사이, 자격증 O 또는 X
+				(hak >= 1 && hak <= 3)
+				&& (ban >= 1 && ban <= 15)
+				&& (bun >= 1 && bun <= 31)
+			) { // 학년, 반, 번호의 숫자를 검사해서 통과한 경우
 				result = true;
 			}
 			
@@ -174,38 +196,4 @@ public class ModificationController implements Initializable {
 			return result;
 		}
 	}
-	
-	void readMemberData() {
-		if(
-			Main.global_user_id.isEmpty() == false
-			&&
-			Main.global_user_id.length() > 0
-		) {
-			DBConnection connNow = new DBConnection();
-			Connection conn = connNow.getConnection();
-			
-			String sql = "SELECT * FROM member_accounts "
-					+ "WHERE user_id='" + Main.global_user_id + "'";
-			
-			try {
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				
-				while(rs.next() ) {
-					usernameTextField.setText(rs.getString("user_name"));
-					useridTextField.setText(rs.getString("user_id"));
-					password1PasswordField.setText(rs.getString("user_password"));
-					password2PasswordField.setText(rs.getString("user_password"));
-					classnumTextField.setText(rs.getString("class_num"));
-					cityTextField.setText(rs.getString("city"));
-					bunTextField.setText(rs.getString("jungbo"));
-				}
-				
-				stmt.close();
-				rs.close();
-				conn.close();
-			} catch(Exception e) {}
-		}
-	}
 }
-
