@@ -2,19 +2,19 @@ package application;
 
 public class Member {
 	String userName = null;
-	String userId = null;
-	String userPassword = null;
+	String usergender = null;
+	String classname = null;
 	String classnum = null;
 	String city = null;
 	String jungbo = null;
 	public Member() {
 		this("", "", "", "", "", "");
 	}
-	public Member(String userName, String userId, String userPassword, String classnum, String city, String jungbo) {
+	public Member(String userName, String usergender, String classname, String classnum, String city, String jungbo) {
 		super();
 		this.userName = userName;
-		this.userId = userId;
-		this.userPassword = userPassword;
+		this.usergender = usergender;
+		this.classname = classname;
 		this.classnum = classnum;
 		this.city = city;
 		this.jungbo = jungbo;
@@ -25,17 +25,17 @@ public class Member {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserId() {
-		return userId;
+	public String getusergender() {
+		return usergender;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setusergender(String usergender) {
+		this.usergender = usergender;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public String getclassname() {
+		return classname;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setclassname(String classname) {
+		this.classname = classname;
 	}
 	public String getclassnum() {
 		return classnum;
