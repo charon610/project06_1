@@ -31,9 +31,9 @@ public class LoginController {
 	@FXML
 	private CheckBox adminCheckBox;
 	@FXML
-	private TextField useridTextField;
+	private TextField usernameTextField;
 	@FXML
-	private PasswordField passwordPasswordField;
+	private PasswordField classnumclassnumField;
 	@FXML
 	private Button loginButton;
 	@FXML
@@ -59,8 +59,8 @@ public class LoginController {
 		
 		if(loginButton.getText().equals("로그인") == true) {
 			if(
-				useridTextField.getText().isBlank() == false
-				&& passwordPasswordField.getText().isBlank() == false
+				usernameTextField.getText().isBlank() == false
+				&& classnumclassnumField.getText().isBlank() == false
 					) { // 아이디와 암호가 입력되어 있는지 체크
 				if(adminCheckBox.isSelected() == true) { // 관리자 로그인
 					loginMessageLabel.setText("관리자 로그인...");
@@ -82,13 +82,13 @@ public class LoginController {
 		if(adminCheckBox.isSelected() == true) {  // 관리자 체크 On
 			registrationButton.setText("관리자 회원관리");
 			registrationButton.setDisable(true);
-			useridTextField.setText("");
-			passwordPasswordField.setText("");
+			usernameTextField.setText("");
+			classnumclassnumField.setText("");
 		} else { // 관리자 체크 Off (일반 사용자)
 			registrationButton.setText("회원가입");
 			registrationButton.setDisable(false);
-			useridTextField.setText("");
-			passwordPasswordField.setText("");
+			usernameTextField.setText("");
+			classnumclassnumField.setText("");
 		}
 	}
 	
@@ -124,8 +124,8 @@ public class LoginController {
 	
 	public void cancelButtonOnAction(ActionEvent e) {
 		adminCheckBox.setSelected(false);
-		useridTextField.setText("");
-		passwordPasswordField.setText("");
+		usernameTextField.setText("");
+		classnumclassnumField.setText("");
 	}
 	
 	public boolean isAdminLogin() {
@@ -142,8 +142,8 @@ public class LoginController {
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, useridTextField.getText());
-			pstmt.setString(2, passwordPasswordField.getText());
+			pstmt.setString(1, usernameTextField.getText());
+			pstmt.setString(2, classnumclassnumField.getText());
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -168,17 +168,17 @@ public class LoginController {
 		Connection conn = connDB.getConnection();
 		
 		// 유저 로그인 체크
-		String sql = "SELECT user_name, class_name"
+		String sql = "SELECT user_name, class_num"
 				+ " FROM member_accounts"
 				+ " WHERE user_name=?"
-				+ " AND class_name=?";
+				+ " AND class_num=?";
 		// 로그인 성공 여부
 		boolean result = false;
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, useridTextField.getText());
-			pstmt.setString(2, passwordPasswordField.getText());
+			pstmt.setString(1, usernameTextField.getText());
+			pstmt.setString(2, classnumclassnumField.getText());
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -187,7 +187,7 @@ public class LoginController {
 			if(rs.next()) {
 				result = true;
 				isUserLogin = true;
-				Main.global_user_id = useridTextField.getText();
+				Main.global_user_id = usernameTextField.getText();
 			}
 			
 			// 소멸자
@@ -203,8 +203,8 @@ public class LoginController {
 	void validateAdminLogin() {
 		if(isAdminLogin() == true) { // 관리자 로그인 성공
 			loginMessageLabel.setText("관리자 로그인 성공!! 환영합니다^^");
-			useridTextField.setText("");
-			passwordPasswordField.setText("");
+			usernameTextField.setText("");
+			classnumclassnumField.setText("");
 			registrationButton.setDisable(false);
 			loginButton.setText("로그아웃");
 		} else { // 관리자 로그인 실패
@@ -215,8 +215,8 @@ public class LoginController {
 	void validateMemberLogin() {
 		if(isMemberLogin() == true) { // 사용자 로그인 성공
 			loginMessageLabel.setText("사용자 로그인 성공!! 환영합니다^^");
-			useridTextField.setText("");
-			passwordPasswordField.setText("");
+			usernameTextField.setText("");
+			classnumclassnumField.setText("");
 			loginButton.setText("로그아웃");
 			registrationButton.setText("회원정보 수정");
 		} else { // 사용자 로그인 실패
