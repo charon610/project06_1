@@ -167,11 +167,11 @@ public class LoginController {
 		DBConnection connDB = new DBConnection();
 		Connection conn = connDB.getConnection();
 		
-		// 관리자 로그인 체크
-		String sql = "SELECT user_id, user_password"
+		// 유저 로그인 체크
+		String sql = "SELECT user_name, class_name"
 				+ " FROM member_accounts"
-				+ " WHERE user_id=?"
-				+ " AND user_password=?";
+				+ " WHERE user_name=?"
+				+ " AND class_name=?";
 		// 로그인 성공 여부
 		boolean result = false;
 		

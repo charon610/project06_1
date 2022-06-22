@@ -17,13 +17,13 @@ public class RegistrationController {
 	@FXML
 	private TextField usernameTextField;
 	@FXML
-	private TextField useridTextField;
+	private TextField usergenderTextField;
 	@FXML
-	private TextField hakTextField;
+	private TextField classnumTextField;
 	@FXML
-	private TextField banTextField;
+	private TextField cityTextField;
 	@FXML
-	private TextField bunTextField;
+	private TextField jungboTextField;
 	@FXML
 	private PasswordField password1PasswordField;
 	@FXML
@@ -65,11 +65,11 @@ public class RegistrationController {
 				// 데이터베이스에 값을 저장하는 SQL문 실행
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, usernameTextField.getText());
-				pstmt.setString(2, useridTextField.getText());
+				pstmt.setString(2, usergenderTextField.getText());
 				pstmt.setString(3, password1PasswordField.getText());
-				pstmt.setString(4, hakTextField.getText());
-				pstmt.setString(5, banTextField.getText());
-				pstmt.setString(6, bunTextField.getText());
+				pstmt.setString(4, classnumTextField.getText());
+				pstmt.setString(5, cityTextField.getText());
+				pstmt.setString(6, jungboTextField.getText());
 				pstmt.executeUpdate();
 				
 				pstmt.close();
@@ -77,12 +77,12 @@ public class RegistrationController {
 				
 				registerMessageLabel.setText("데이터베이스에 회원정보 입력 완료!");
 				usernameTextField.setText("");
-				useridTextField.setText("");
+				usergenderTextField.setText("");
 				password1PasswordField.setText("");
 				password2PasswordField.setText("");
-				hakTextField.setText("");
-				banTextField.setText("");
-				bunTextField.setText("");
+				classnumTextField.setText("");
+				cityTextField.setText("");
+				jungboTextField.setText("");
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -102,10 +102,10 @@ public class RegistrationController {
 	@FXML
 	void cancelButtonOnAction(ActionEvent e) {
 		usernameTextField.setText("");
-		useridTextField.setText("");
-		hakTextField.setText("");
-		banTextField.setText("");
-		bunTextField.setText("");
+		usergenderTextField.setText("");
+		classnumTextField.setText("");
+		cityTextField.setText("");
+		jungboTextField.setText("");
 		password1PasswordField.setText("");
 		password2PasswordField.setText("");
 	}
@@ -120,12 +120,12 @@ public class RegistrationController {
 		boolean result = false;
 		if(
 			usernameTextField.getText().isBlank() == false
-			&& useridTextField.getText().isBlank() == false
+			&& usergenderTextField.getText().isBlank() == false
 			&& password1PasswordField.getText().isBlank() == false
 			&& password2PasswordField.getText().isBlank() == false
-			&& hakTextField.getText().isBlank() == false
-			&& banTextField.getText().isBlank() == false
-			&& bunTextField.getText().isBlank() == false
+			&& classnumTextField.getText().isBlank() == false
+			&& cityTextField.getText().isBlank() == false
+			&& jungboTextField.getText().isBlank() == false
 		) { // 공백이 없다면..
 			result = true;
 		}
@@ -138,7 +138,7 @@ public class RegistrationController {
 		Connection conn = connNow.getConnection();
 		
 		String sql = "SELECT COUNT(1) FROM member_accounts "
-				+ " WHERE user_id='" + useridTextField.getText() + "'";
+				+ " WHERE user_gender='" + usergenderTextField.getText() + "'";
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -173,20 +173,19 @@ public class RegistrationController {
 	
 	boolean isCheckNumbers() {
 		boolean result = false;
-		int hak = 0;
-		int ban = 0;
-		int bun = 0;
+		int classnum = 0;
+		int city = 0;
+		String jungbo = null;
 		
 		try {
-			hak = Integer.parseInt(hakTextField.getText());
-			ban = Integer.parseInt(banTextField.getText());
-			bun = Integer.parseInt(bunTextField.getText());
+			classnum = Integer.parseInt(classnumTextField.getText());
+			city = Integer.parseInt(cityTextField.getText());
+			jungbo = jungboTextField.getText();
 			
 			if(
-				(hak >= 1 && hak <= 3)
-				&& (ban >= 1 && ban <= 15)
-				&& (bun >= 1 && bun <= 31)
-			) { // 학년, 반, 번호의 숫자를 검사해서 통과한 경우
+				(classnum >= 501 && classnum <= 505)
+				&& (jungbo == "O" || jungbo == "X")
+				) { // 클래스 번호가 501~505호 사이, 자격증 O 또는 X
 				result = true;
 			}
 			
