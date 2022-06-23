@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="test.회원조회컨트롤">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="test.UserrefControll">
    <children>
       <Button fx:id="회원정보수정버튼" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" text="회원정보 수정" />
       <Button fx:id="돌아가기버튼" layoutX="500.0" layoutY="360.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" text="돌아가기" />
-      <Button fx:id="회원찾기버튼" layoutX="500.0" layoutY="30.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" text="회원 찾기" onAction="#printTable" />
+      <Button fx:id="회원찾기버튼" layoutX="500.0" layoutY="30.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" text="회원 찾기" />
       <TableView layoutX="25.0" layoutY="75.0" prefHeight="270.0" prefWidth="550.0">
         <columns>
           <TableColumn fx:id="번호" prefWidth="40.0" text="No." />
@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <TextField fx:id="회원이름입력창" layoutX="90.0" layoutY="30.0" prefHeight="23.0" prefWidth="400.0" />
-      <Label fx:id="이름검색텍스트" layoutX="20.0" layoutY="30.0" prefHeight="23.0" prefWidth="60.0" text="이름 검색 " />
+      <Label layoutX="20.0" layoutY="30.0" prefHeight="23.0" prefWidth="60.0" text="이름 검색 " />
       <Separator layoutY="66.0" prefHeight="10.0" prefWidth="600.0" />
       <Separator layoutY="347.0" prefHeight="10.0" prefWidth="600.0" />
    </children>
