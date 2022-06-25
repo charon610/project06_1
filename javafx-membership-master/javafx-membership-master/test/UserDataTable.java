@@ -2,65 +2,65 @@ package test;
 
 public class UserDataTable {
 	
-	private int 번호;
-	private String 이름;
-	private String 성별;
-	private String 과목명;
-	private int 강의실;
-	private String 주거지;
-	private String 자격증;
+	private String idx= null;
+	private String username = null;
+	private String usergender = null;
+	private String classname = null;
+	private String classnum = null;
+	private String city = null;
+	private String jungbo = null;
 	
-	public UserDataTable(int 번호, String 이름, String 성별, String 과목명, int 강의실, String 주거지, String 자격증) {
-		this.번호 = 번호;
-		this.이름 = 이름;
-		this.성별 = 성별;
-		this.과목명 = 과목명;
-		this.강의실 = 강의실;
-		this.주거지 = 주거지;
-		this.자격증 = 자격증;
+	public UserDataTable( String idx, String username, String usergender, String classname, String classnum, String city, String jungbo) {
+		this.idx = idx;
+		this.username = username;
+		this.usergender = usergender;
+		this.classname = classname;
+		this.classnum = classnum;
+		this.city = city;
+		this.jungbo = jungbo;
 	}
 	
-	public int get번호() {
-		return 번호;
+	public String getidx() {
+		return idx;
 	}
-	public String get이름() {
-		return 이름;
+	public String getusername() {
+		return username;
 	}
-	public String get성별() {
-		return 성별;
+	public String getusergender() {
+		return usergender;
 	}
-	public String get과목명() {
-		return 과목명;
+	public String getclassname() {
+		return classname;
 	}
-	public int get강의실() {
-		return 강의실;
+	public String getclassnum() {
+		return classnum;
 	}
-	public String get주거지() {
-		return 주거지;
+	public String getcity() {
+		return city;
 	}
-	public String get자격증() {
-		return 자격증;
+	public String getjungbo() {
+		return jungbo;
 	}
-	public void set번호(int 번호) {
-		this.번호 = 번호;
+	public void setidx(String idx) {
+		this.idx = idx;
 	}
-	public void set이름(String 이름) {
-		this.이름 = 이름;
+	public void setusername(String username) {
+		this.username = username;
 	}
-	public void set성별(String 성별) {
-		this.성별 = 성별;
+	public void setusergender(String usergender) {
+		this.usergender = usergender;
 	}
-	public void set과목명(String 과목명) {
-		this.과목명 = 과목명;
+	public void setclassname(String classname) {
+		this.classname = classname;
 	}
-	public void set강의실(int 강의실) {
-		this.강의실 = 강의실;
+	public void setclassnum(String classnum) {
+		this.classnum = classnum;
 	}
-	public void set주거지(String 주거지) {
-		this.주거지 = 주거지;
+	public void setcity(String city) {
+		this.city = city;
 	}
-	public void set자격증(String 자격증) {
-		this.자격증 = 자격증;
+	public void setjungbo(String jungbo) {
+		this.jungbo = jungbo;
 	}
 	
 	
