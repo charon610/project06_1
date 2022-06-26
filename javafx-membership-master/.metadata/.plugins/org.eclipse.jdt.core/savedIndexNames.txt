@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+D:\Pathos\Work\2206\javafx-membership-master\.metadata\.plugins\org.eclipse.jdt.core
+1645129332.index
