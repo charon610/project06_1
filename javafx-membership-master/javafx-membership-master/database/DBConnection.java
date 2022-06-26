@@ -1,4 +1,4 @@
-package test;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,9 +17,9 @@ public class DBConnection {
 			dbConn = DriverManager.getConnection(
 					dbUrl, dbUser, dbPassword
 			);
-			//System.out.println("ë””ë¹„ ì—°ê²° ì™„ë£Œ~!");
+			//System.out.println("?””ë¹? ?—°ê²? ?™„ë£?~!");
 		} catch(Exception e) {
-			//System.out.println("ë””ë¹„ ì—°ê²° ì‹¤íŒ¨..");
+			//System.out.println("?””ë¹? ?—°ê²? ?‹¤?Œ¨..");
 			e.printStackTrace();
 		}
 		
