@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="380.0" layoutX="210.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@menubg.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="400.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ezen.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="memberbutton" layoutX="436.0" layoutY="256.0" mnemonicParsing="false" onAction="#memberbuttonOnAction" prefHeight="25.0" prefWidth="130.0" text="회원등록" />
+            <Button fx:id="logoutbutton" layoutX="436.0" layoutY="338.0" mnemonicParsing="false" onAction="#logoutbuttonOnAction" prefHeight="25.0" prefWidth="130.0" text="로그아웃" />
+            <Button fx:id="userrefbutton" layoutX="436.0" layoutY="296.0" mnemonicParsing="false" onAction="#userrefbuttonOnAction" prefHeight="25.0" prefWidth="130.0" text="회원조회" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -13,10 +13,10 @@ public class Main extends Application {
 	private static final ObservableList<UserDataTable> datatable = FXCollections.observableArrayList();
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("1234.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("member.fxml"));
 		Scene scene = new Scene(root);
 		
-		primaryStage.setTitle("AppMain");
+		primaryStage.setTitle("학생관리프로그램");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
