@@ -13,7 +13,7 @@ public class Main extends Application {
 	private static final ObservableList<UserDataTable> datatable = FXCollections.observableArrayList();
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("member.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
 		Scene scene = new Scene(root);
 		
 		primaryStage.setTitle("�븰�깮愿�由ы봽濡쒓렇�옩");
