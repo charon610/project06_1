@@ -16,7 +16,7 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("member.fxml"));
 		Scene scene = new Scene(root);
 		
-		primaryStage.setTitle("학생관리프로그램");
+		primaryStage.setTitle("�븰�깮愿�由ы봽濡쒓렇�옩");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
