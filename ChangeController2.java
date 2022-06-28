@@ -14,15 +14,15 @@ import javafx.stage.Stage;
 
 public class ChangeController2 implements Initializable{
 	
-	/*�̸� = userid
-	���Ǹ� = classname
-	���ǽ� ��ȣ = classnum
-	�������� = city
-	���� = gender
-	�ڰ��� ���� = certificate
-	���� ��ư = changebutton
-	��� ��ư = resetbutton
-	�޴� ��ư = menubutton */
+	/*이름 = userid
+	강의명 = classname
+	강의실 번호 = classnum
+	거주지명 = city
+	성별 = gender
+	자격증 여부 = certificate
+	수정 버튼 = changebutton
+	취소 버튼 = resetbutton
+	메뉴 버튼 = menubutton */
 	
 	@FXML private TextField userid;
 	@FXML private TextField classname;
@@ -42,7 +42,7 @@ public class ChangeController2 implements Initializable{
 		
 	}	
 	
-	// ���� ��ư Ŭ�� �̺�Ʈ
+	// 수정 버튼 클릭 이벤트
 	@FXML
 	void changebuttonOnAction( ) {
 		
@@ -71,12 +71,12 @@ public class ChangeController2 implements Initializable{
 			pstmt.close();
 			conn.close();
 			
-			changeMessage.setText("ȸ�� ���� ������ �Ϸ��߽��ϴ�!");
+			changeMessage.setText("회원 정보 수정을 완료했습니다!");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		changeMessage.setText("���� �Ϸ�!");
+		changeMessage.setText("수정 완료!");
 /*		boolean checkuserid
 		boolean checkclassname
 		boolean classnum
@@ -89,13 +89,13 @@ public class ChangeController2 implements Initializable{
 				
 */		
 		
-		// ���� ��ư Ŭ�� �̺�Ʈ
-		//registrationMessage.setText("��� �Ϸ�!");
+		// 수정 버튼 클릭 이벤트
+		//registrationMessage.setText("등록 완료!");
 	}
 	
 	
 	
-	// �ʱ�ȭ ��ư Ŭ�� �̺�Ʈ
+	// 초기화 버튼 클릭 이벤트
 	@FXML
 	public void resetbuttonOnAction() {
 		
@@ -110,7 +110,7 @@ public class ChangeController2 implements Initializable{
 		
 	}
 	
-	// �޴�ȭ�� ��ư Ŭ�� �̺�Ʈ
+	// 메뉴화면 버튼 클릭 이벤트
 	@FXML
 	void menubuttonOnAction() {
 		
